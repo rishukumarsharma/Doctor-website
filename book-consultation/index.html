@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Consultation — Dr. Amulya.S.M.</title>
+  <meta name="description"
+    content="Book an online or in-clinic consultation with Dr. Amulya.S.M. in a few simple steps.">
+  <link rel="canonical" href="https://[yourdomain.com]/book-consultation/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../" class="brand">Dr. Amulya.S.M.<span>Slimming &amp; Aesthetics</span></a>
+      <nav class="main-nav" aria-label="Primary">
+        <ul id="nav-links"></ul>
+        <a href="../book-consultation/" class="btn btn-primary nav-cta is-active"
+          data-track="click_book_consultation">Book a Consultation</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Open menu"
+        aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <div class="mobile-nav-panel">
+    <ul id="mobile-nav-links"></ul>
+    <a href="../book-consultation/" class="btn btn-primary" data-track="click_book_consultation">Book a Consultation</a>
+  </div>
+
+  <main>
+    <section class="page-hero section-tight">
+      <div class="container-narrow">
+        <span class="eyebrow">Book a Consultation</span>
+        <h1 style="margin-top:var(--space-2); font-size:var(--fs-h2)">Let's Get Started.</h1>
+        <p class="lede">A few quick steps — no payment is taken until you're ready.</p>
+      </div>
+    </section>
+
+    <section class="booking-shell" data-booking-app>
+      <div class="booking-progress">
+        <div class="progress-step" data-step="1"><span class="dot">1</span><span class="label">Service</span></div>
+        <div class="progress-step" data-step="2"><span class="dot">2</span><span class="label">Type</span></div>
+        <div class="progress-step" data-step="3"><span class="dot">3</span><span class="label">Date &amp; Time</span>
+        </div>
+        <div class="progress-step" data-step="4"><span class="dot">4</span><span class="label">Details</span></div>
+        <div class="progress-step" data-step="5"><span class="dot">5</span><span class="label">Payment</span></div>
+        <div class="progress-step" data-step="6"><span class="dot">6</span><span class="label">Confirmed</span></div>
+      </div>
+
+      <!-- STEP 1: SERVICE -->
+      <div class="booking-step" data-step="1">
+        <h3>Choose a Service or Program</h3>
+        <p class="text-muted" style="font-size:var(--fs-small); margin-block:var(--space-2) var(--space-4)">Select the
+          consultation or program you'd like to book.</p>
+        <div class="option-grid" data-step-service></div>
+        <div class="booking-nav"><span></span><button class="btn btn-primary" data-action="next"
+            disabled>Continue</button></div>
+      </div>
+
+      <!-- STEP 2: TYPE -->
+      <div class="booking-step" data-step="2">
+        <h3>Choose Consultation Type</h3>
+        <p class="text-muted" style="font-size:var(--fs-small); margin-block:var(--space-2) var(--space-4)">Online or
+          in-clinic — whichever works best for you.</p>
+        <div class="option-grid" data-step-type></div>
+        <div class="booking-nav"><button class="btn btn-secondary" data-action="back">Back</button><button
+            class="btn btn-primary" data-action="next" disabled>Continue</button></div>
+      </div>
+
+      <!-- STEP 3: DATE & TIME -->
+      <div class="booking-step" data-step="3">
+        <h3>Choose Date &amp; Time</h3>
+        <p class="text-muted" style="font-size:var(--fs-small); margin-block:var(--space-2) var(--space-4)">Pick a date,
+          then an available time slot.</p>
+        <div class="form-group" data-step-date></div>
+        <div data-step-time style="margin-top:var(--space-4)"></div>
+        <div class="booking-nav"><button class="btn btn-secondary" data-action="back">Back</button><button
+            class="btn btn-primary" data-action="next" disabled>Continue</button></div>
+      </div>
+
+      <!-- STEP 4: DETAILS -->
+      <div class="booking-step" data-step="4">
+        <h3>Your Information</h3>
+        <form data-details-form style="margin-top:var(--space-4)" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" name="name" required>
+              <span class="error-msg">Please enter your full name.</span>
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" name="phone" required>
+              <span class="error-msg">Please enter a valid 10-digit phone number.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email">
+            <span class="error-msg">Please enter a valid email address.</span>
+          </div>
+          <div class="form-group">
+            <label>Anything the doctor should know? (optional)</label>
+            <textarea name="notes" rows="3"></textarea>
+          </div>
+        </form>
+        <div class="booking-nav"><button class="btn btn-secondary" data-action="back">Back</button><button
+            class="btn btn-primary" data-action="next">Review Booking</button></div>
+      </div>
+
+      <!-- STEP 5: SUMMARY + PAYMENT -->
+      <div class="booking-step" data-step="5">
+        <h3>Booking Summary</h3>
+        <div data-step-summary style="margin-block:var(--space-4)"></div>
+
+        <div class="card" style="margin-top:var(--space-4)">
+          <h3 style="font-size:1.05rem">Payment</h3>
+          <p class="text-muted" style="font-size:var(--fs-small); margin-top:var(--space-2)">
+            Secure payment integration will appear here. No charge is made until a verified payment provider is
+            connected — your booking is confirmed as a request, and our team will follow up to complete payment
+            securely.
+          </p>
+          <button class="btn btn-dark btn-block" style="margin-top:var(--space-4)" data-pay-action
+            data-track="payment_started">Confirm &amp; Continue</button>
+          <p data-payment-status style="font-size:var(--fs-caption); margin-top:var(--space-3)"></p>
+        </div>
+
+        <div class="booking-nav"><button class="btn btn-secondary" data-action="back">Back</button><span></span></div>
+      </div>
+
+      <!-- STEP 6: CONFIRMATION -->
+      <div class="booking-step" data-step="6">
+        <div class="confirmation-check">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+            <path d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 class="text-center">Booking Request Received</h3>
+        <p class="lede text-center" style="margin-inline:auto; margin-top:var(--space-3); max-width:50ch;">
+          Thank you — your consultation request has been received. Our team will confirm your appointment and payment
+          details shortly by phone or WhatsApp.
+        </p>
+        <div class="hero-actions" style="justify-content:center; margin-top:var(--space-5)">
+          <a href="../" class="btn btn-secondary">Return Home</a>
+          <a href="#" class="btn btn-primary" data-bind-href="contact.whatsappLink" target="_blank" rel="noopener"
+            data-track="click_whatsapp">Message Us on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="grid footer-grid">
+        <div>
+          <a href="../" class="brand">Dr. Amulya.S.M.<span>Slimming &amp; Aesthetics</span></a>
+          <p style="margin-top:var(--space-3); color:rgba(248,245,238,0.7); font-size:var(--fs-small); max-width:32ch;">
+            Personalized body slimming and facial aesthetics consultations.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul class="footer-links" id="footer-nav-links"></ul>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="../body-slimming/">Body Slimming</a></li>
+            <li><a href="../facial-aesthetics/">Facial Aesthetics</a></li>
+            <li><a href="../pricing/">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li><a href="#" data-bind-href="contact.telLink" data-bind="contact.phone"></a></li>
+            <li><a href="#" data-bind-href="contact.mailLink" data-bind="contact.email"></a></li>
+            <li data-bind="contact.timings"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Dr. Amulya.S.M. All rights reserved.</span>
+        <div style="display:flex; gap:var(--space-4);">
+          <a href="../faq/#disclaimer">Medical Disclaimer</a>
+          <a href="../faq/#privacy">Privacy Policy</a>
+          <a href="../faq/#terms">Terms</a>
+          <a href="../faq/#cancellation">Cancellation / Refund Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.SITE_BASE = "../";</script>
+  <script src="../js/data.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    [document.getElementById("nav-links"), document.getElementById("mobile-nav-links"), document.getElementById("footer-nav-links")].forEach(list => {
+      list.innerHTML = SITE_DATA.nav.map(n => `<li><a href="${window.SITE_BASE}${n.href}">${n.label}</a></li>`).join("");
+    });
+  </script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/animations.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/booking.js"></script>
+</body>
+
+</html>

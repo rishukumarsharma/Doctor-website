@@ -39,10 +39,21 @@
   }
 
   function markActiveLink() {
-    const path = window.location.pathname.split("/").pop() || "index.html";
+    const slug = (pathname) => {
+      const parts = pathname.split("/").filter(Boolean);
+      return parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "";
+    };
+    const current = slug(window.location.pathname);
     document.querySelectorAll(".main-nav a, .mobile-nav-panel a").forEach((a) => {
       const href = a.getAttribute("href");
-      if (href === path) a.classList.add("is-active");
+      if (!href) return;
+      let resolved;
+      try {
+        resolved = new URL(href, window.location.href).pathname;
+      } catch (e) {
+        return;
+      }
+      if (slug(resolved) === current) a.classList.add("is-active");
     });
   }
 

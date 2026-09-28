@@ -74,7 +74,7 @@
       bar.className = "mobile-sticky-cta";
       bar.innerHTML = `
         <a class="btn btn-secondary" href="${buildWhatsAppLink()}" target="_blank" rel="noopener" data-track="click_whatsapp">WhatsApp</a>
-        <a class="btn btn-primary" href="book-consultation.html" data-track="click_book_consultation">Book Consultation</a>
+        <a class="btn btn-primary" href="${window.SITE_BASE}book-consultation/" data-track="click_book_consultation">Book Consultation</a>
       `;
       document.body.appendChild(bar);
     }
@@ -151,7 +151,7 @@
       card.setAttribute("aria-pressed", "true");
       if (summaryValue) summaryValue.textContent = card.dataset.price;
       if (summaryLabel) summaryLabel.textContent = card.dataset.name + " Program";
-      if (continueBtn) continueBtn.href = `book-consultation.html?program=${card.dataset.planId}`;
+      if (continueBtn) continueBtn.href = `${window.SITE_BASE}book-consultation/?program=${card.dataset.planId}`;
       track("select_service", { plan: card.dataset.planId });
     }
 

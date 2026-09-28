@@ -22,11 +22,11 @@ const SITE_DATA = {
   },
 
   nav: [
-    { label: "About", href: "about.html" },
-    { label: "Services", href: "services.html" },
-    { label: "Results", href: "results.html" },
-    { label: "Pricing", href: "pricing.html" },
-    { label: "Journal", href: "blog.html" },
+    { label: "About", href: "about/" },
+    { label: "Services", href: "services/" },
+    { label: "Results", href: "results/" },
+    { label: "Pricing", href: "pricing/" },
+    { label: "Journal", href: "blog/" },
   ],
 
   specializations: [
@@ -37,7 +37,7 @@ const SITE_DATA = {
       title: "Body Slimming & Weight Management",
       description:
         "Personalized nutrition, lifestyle guidance and progress monitoring built around your body, your routine and your goals.",
-      href: "body-slimming.html",
+      href: "body-slimming/",
       image: "assets/services/body-slimming.jpg",
     },
     {
@@ -47,7 +47,7 @@ const SITE_DATA = {
       title: "Facial Aesthetics",
       description:
         "A refined, evidence-informed approach to skin health, contouring and anti-ageing care — assessed and planned around your face.",
-      href: "facial-aesthetics.html",
+      href: "facial-aesthetics/",
       image: "assets/services/facial-aesthetics.jpg",
     },
   ],
