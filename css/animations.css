@@ -1,0 +1,29 @@
+/* ==========================================================================
+   ANIMATIONS — kept subtle, slow and intentional. Respects reduced-motion
+   via the global rule in style.css.
+   ========================================================================== */
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-copy .eyebrow { animation: heroFadeUp 0.7s var(--ease-premium) both; }
+.hero-copy h1 { animation: heroFadeUp 0.8s var(--ease-premium) 0.1s both; }
+.hero-copy .lede { animation: heroFadeUp 0.8s var(--ease-premium) 0.2s both; }
+.hero-copy .hero-actions { animation: heroFadeUp 0.8s var(--ease-premium) 0.3s both; }
+.hero-visual { animation: heroFadeUp 1s var(--ease-premium) 0.25s both; }
+
+@keyframes badgePop {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+.plan-card .badge { animation: badgePop 0.5s var(--ease-premium) both; }
+
+.faq-item.is-open .faq-answer { transition: max-height 0.45s var(--ease-premium); }
+
+/* Magnetic-feel primary button — subtle, not gimmicky */
+.btn-primary { will-change: transform; }
+
+/* Counter number tick container */
+.stat[data-counter] { font-variant-numeric: tabular-nums; }
