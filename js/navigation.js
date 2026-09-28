@@ -21,11 +21,13 @@
     const close = () => {
       panel.classList.remove("is-open");
       toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open menu");
       document.body.style.overflow = "";
     };
     const open = () => {
       panel.classList.add("is-open");
       toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-label", "Close menu");
       document.body.style.overflow = "hidden";
     };
 

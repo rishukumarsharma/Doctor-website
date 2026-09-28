@@ -4,80 +4,209 @@
    ========================================================================== */
 
 @media (max-width: 1280px) {
-  .footer-grid { grid-template-columns: 1.2fr 1fr 1fr; }
-  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .pricing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 1024px) {
-  .hero .container { grid-template-columns: 1fr; }
-  .hero-visual { order: -1; max-width: 420px; margin-inline: auto; }
-  .hero-fullbleed .hero-copy { max-width: 420px; }
-  .specialization-grid { grid-template-columns: 1fr; }
-  .journey-section .container { grid-template-columns: 1fr; gap: var(--space-7); }
-  .testimonial-grid { grid-template-columns: repeat(2, 1fr); }
-  .blog-grid { grid-template-columns: repeat(2, 1fr); }
-  .results-grid { grid-template-columns: repeat(2, 1fr); }
-  .plan-grid { grid-template-columns: repeat(3, 1fr); }
+  .hero .container {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .split-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-visual {
+    order: -1;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  .hero-fullbleed .hero-copy {
+    max-width: 420px;
+  }
+
+  .specialization-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-section .container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-7);
+  }
+
+  .testimonial-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .blog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .results-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .plan-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 860px) {
-  .main-nav ul, .main-nav .nav-cta { display: none; }
-  .nav-toggle { display: flex; }
 
-  section { padding-block: var(--space-7); }
+  .main-nav ul,
+  .main-nav .nav-cta {
+    display: none;
+  }
 
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-6); }
-  .form-row { grid-template-columns: 1fr; }
+  .nav-toggle {
+    display: flex;
+  }
 
-  .mobile-sticky-cta { display: flex; }
-  body { padding-bottom: 76px; }
+  section {
+    padding-block: var(--space-7);
+  }
+
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .form-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mobile-sticky-cta {
+    display: flex;
+  }
+
+  /* the sticky bar already includes its own WhatsApp button, so the
+     floating bubble would just sit on top of it here */
+  .whatsapp-float {
+    display: none;
+  }
+
+  body {
+    padding-bottom: 76px;
+  }
 
   .plan-grid {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: var(--space-3);
-    margin-inline: calc(-1 * var(--space-4));
+    margin-inline: 0;
     padding-inline: var(--space-4);
     padding-bottom: var(--space-2);
   }
-  .plan-card { min-width: 78%; scroll-snap-align: center; }
-  .swipe-hint { display: block; }
 
-  .not-sure-box { flex-direction: column; align-items: flex-start; }
+  .plan-card {
+    min-width: 78%;
+    scroll-snap-align: center;
+  }
 
-  .option-grid { grid-template-columns: 1fr; }
-  .time-slot-grid { grid-template-columns: repeat(3, 1fr); }
+  .swipe-hint {
+    display: block;
+  }
+
+  .not-sure-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .option-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .time-slot-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
-  .testimonial-grid { grid-template-columns: 1fr; }
-  .blog-grid { grid-template-columns: 1fr; }
-  .results-grid { grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; gap: var(--space-5); }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .testimonial-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 
-  .service-row { grid-template-columns: 40px 1fr; }
-  .service-row .meta { grid-column: 1 / -1; justify-content: space-between; margin-top: var(--space-2); }
+  .blog-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 
-  .testimonial-feature { padding: var(--space-5); }
-  .floating-card { position: static; margin-top: var(--space-3); }
+  .results-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 
-  .booking-progress .label { display: none; }
-  .time-slot-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .service-row {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+
+  .service-row .meta {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    margin-top: var(--space-2);
+  }
+
+  .testimonial-feature {
+    padding: var(--space-5);
+  }
+
+  .floating-card {
+    position: static;
+    margin-top: var(--space-3);
+  }
+
+  .booking-progress .label {
+    display: none;
+  }
+
+  .time-slot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
   /* full-bleed hero: too narrow now for a side panel — switch to a
      full-width panel anchored to the bottom, with the scrim following.
      Extra min-height gives tall wrapped copy room to sit fully inside
      the opaque part of the gradient instead of spilling above it. */
-  .hero-fullbleed { min-height: 620px; align-items: flex-end; padding-block-end: var(--space-5); }
-  .hero-fullbleed .hero-copy { max-width: 100%; padding: var(--space-4); }
+  .hero-fullbleed {
+    min-height: 620px;
+    align-items: flex-end;
+    padding-block-end: var(--space-5);
+  }
+
+  .hero-fullbleed .hero-copy {
+    max-width: 100%;
+    padding: var(--space-4);
+  }
+
+  /* higher specificity than the desktop [data-focal="right"]::after rule,
+     so this actually overrides it instead of losing the cascade */
+  .hero-fullbleed[data-focal="right"]::after,
   .hero-fullbleed::after {
     background: linear-gradient(180deg,
-      rgba(var(--color-background-rgb), 0) 0%,
-      rgba(var(--color-background-rgb), 0) 18%,
-      rgba(var(--color-background-rgb), 0.88) 42%,
-      rgba(var(--color-background-rgb), 0.98) 100%);
+        rgba(var(--color-background-rgb), 0) 0%,
+        rgba(var(--color-background-rgb), 0) 30%,
+        rgba(var(--color-background-rgb), 0.85) 55%,
+        rgba(var(--color-background-rgb), 0.97) 78%,
+        rgba(var(--color-background-rgb), 0.97) 100%);
   }
 }
