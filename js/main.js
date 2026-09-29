@@ -167,7 +167,7 @@
         ${p.recommended ? '<span class="badge">Recommended</span>' : ""}
         <span class="check" aria-hidden="true"></span>
         <div class="duration">${p.duration}</div>
-        <div class="price">${p.price}</div>
+        <div class="price">${p.price}${p.originalPrice ? ` <span style="text-decoration:line-through">${p.originalPrice}</span>` : ""}</div>
         <p class="text-muted" style="font-size:.8rem">${p.description}</p>
         <ul>${p.features.map((f) => `<li>${f}</li>`).join("")}</ul>
       </div>`

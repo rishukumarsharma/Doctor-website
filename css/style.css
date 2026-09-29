@@ -1660,3 +1660,59 @@ select:focus-visible {
     transform: translateY(0);
   }
 }
+
+/* ---- Booking confirmation celebration ---- */
+.confetti-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 550;
+  pointer-events: none;
+}
+
+.confirm-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(36, 35, 31, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  padding: var(--space-4);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-premium);
+}
+
+.confirm-popup-overlay.is-visible {
+  opacity: 1;
+}
+
+.confirm-popup-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  max-width: 400px;
+  width: 100%;
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  text-align: center;
+  transform: scale(0.9) translateY(10px);
+  transition: transform 0.35s var(--ease-premium);
+}
+
+.confirm-popup-overlay.is-visible .confirm-popup-card {
+  transform: scale(1) translateY(0);
+}
+
+.confirm-popup-icon {
+  font-size: 2.75rem;
+  line-height: 1;
+  margin-bottom: var(--space-3);
+}
+
+.confirm-popup-card p {
+  color: var(--color-muted);
+  margin-top: var(--space-2);
+}
+
+.confirm-popup-close {
+  margin-top: var(--space-4);
+}

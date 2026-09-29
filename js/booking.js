@@ -201,6 +201,92 @@
     root.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  /* ---------------- Confirmation celebration (confetti + popup) ---------------- */
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function fireConfetti() {
+    if (prefersReducedMotion) return;
+
+    const canvas = document.createElement("canvas");
+    canvas.className = "confetti-canvas";
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext("2d");
+
+    const colors = ["#3F5B4E", "#B5643F", "#CE8563", "#C9BFA9", "#F8F5EE"];
+    const particles = Array.from({ length: 140 }, () => ({
+      x: Math.random() * canvas.width,
+      y: -20 - Math.random() * canvas.height * 0.4,
+      size: 6 + Math.random() * 6,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      speedY: 2 + Math.random() * 3,
+      speedX: (Math.random() - 0.5) * 2,
+      rotation: Math.random() * 360,
+      rotationSpeed: (Math.random() - 0.5) * 10,
+      shape: Math.random() > 0.5 ? "rect" : "circle",
+    }));
+
+    const duration = 3200;
+    const start = performance.now();
+
+    function frame(now) {
+      const elapsed = now - start;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => {
+        p.y += p.speedY;
+        p.x += p.speedX;
+        p.rotation += p.rotationSpeed;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        if (p.shape === "rect") {
+          ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      });
+      if (elapsed < duration) {
+        requestAnimationFrame(frame);
+      } else {
+        canvas.remove();
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function showConfirmPopup() {
+    const overlay = document.createElement("div");
+    overlay.className = "confirm-popup-overlay";
+    overlay.innerHTML = `
+      <div class="confirm-popup-card" role="alertdialog" aria-modal="true" aria-labelledby="confirm-popup-title">
+        <div class="confirm-popup-icon" aria-hidden="true">🎉</div>
+        <h3 id="confirm-popup-title">Booking Request Sent!</h3>
+        <p>Thank you — we've got your request. Our team will get back to you soon.</p>
+        <button class="btn btn-primary confirm-popup-close" data-popup-close>Got It</button>
+      </div>`;
+    document.body.appendChild(overlay);
+    requestAnimationFrame(() => overlay.classList.add("is-visible"));
+
+    function close() {
+      overlay.classList.remove("is-visible");
+      document.removeEventListener("keydown", onKey);
+      setTimeout(() => overlay.remove(), 300);
+    }
+    function onKey(e) {
+      if (e.key === "Escape") close();
+    }
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) close();
+    });
+    overlay.querySelector("[data-popup-close]").addEventListener("click", close);
+    document.addEventListener("keydown", onKey);
+  }
+
   function handleConfirmStep() {
     const confirmBtn = root.querySelector("[data-pay-action]");
     const statusEl = root.querySelector("[data-payment-status]");
@@ -219,6 +305,8 @@
         email: state.email || "",
         notes: state.notes || "",
       });
+      fireConfetti();
+      showConfirmPopup();
       setTimeout(() => goToStep(6), 900);
     });
   }
