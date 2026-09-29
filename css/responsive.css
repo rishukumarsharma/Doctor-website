@@ -36,9 +36,37 @@
     grid-template-columns: 1fr;
   }
 
-  .journey-section .container {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-7);
+  /* not enough room for 5 columns below this width — fall back to the
+     original vertical stepper layout */
+  .timeline {
+    display: block;
+    padding-left: var(--space-6);
+    margin-top: var(--space-6);
+    max-width: 56ch;
+    margin-inline: auto;
+  }
+
+  .timeline::before {
+    left: 15px;
+    right: auto;
+    top: 6px;
+    bottom: 6px;
+    height: auto;
+    width: 1px;
+  }
+
+  .timeline-step {
+    padding-top: 0;
+    padding-bottom: var(--space-6);
+  }
+
+  .timeline-step::before {
+    left: -46px;
+    top: -4px;
+  }
+
+  .timeline-step p {
+    max-width: 40ch;
   }
 
   .testimonial-grid {
@@ -52,9 +80,12 @@
   .results-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
 
+/* spacious 4-up plan grid once there's enough room for it */
+@media (min-width: 1240px) {
   .plan-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -82,18 +113,13 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .mobile-sticky-cta {
-    display: flex;
+  .offer-bar {
+    padding: var(--space-3) var(--space-4);
+    flex-wrap: wrap;
   }
 
-  /* lift the floating WhatsApp bubble above the sticky Book Consultation
-     bar so the two don't overlap */
-  .whatsapp-float {
-    bottom: calc(76px + var(--space-3));
-  }
-
-  body {
-    padding-bottom: 76px;
+  .offer-bar .offer-copy {
+    font-size: var(--fs-caption);
   }
 
   .plan-grid {
@@ -239,5 +265,29 @@
     object-position: 78% 35%;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  /* the offer bar wraps to two rows on very narrow phones — stack it
+     on purpose so the button stays full-width and tappable, and lift
+     the body/WhatsApp offsets to match the taller bar */
+  .offer-bar {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: var(--space-2);
+  }
+
+  .offer-bar .btn {
+    width: 100%;
+  }
+
+  body {
+    padding-bottom: 118px;
+  }
+
+  .whatsapp-float {
+    bottom: calc(118px + var(--space-3));
   }
 }

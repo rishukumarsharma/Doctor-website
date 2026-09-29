@@ -145,66 +145,71 @@
       </div>
     </section>
 
-    <!-- JOURNEY + PLAN SELECTOR (Section 18A) -->
+    <!-- JOURNEY (Section 18A) -->
     <section class="journey-section">
       <div class="container">
-        <div class="journey-left">
+        <div class="section-head center">
           <span class="eyebrow">Your Journey</span>
           <h2 style="margin-top:var(--space-2)">What Happens After You Choose?</h2>
-          <p class="lede" style="margin-top:var(--space-3)">From your first message to ongoing guidance — here's exactly
-            how the process works.</p>
-          <div class="timeline" id="journey-timeline"></div>
+          <p class="lede" style="margin-top:var(--space-3)">From your first message to ongoing guidance — here's
+            exactly how the process works.</p>
+        </div>
+        <div class="timeline" id="journey-timeline"></div>
+      </div>
+    </section>
+
+    <!-- PLAN SELECTOR (Section 18B) -->
+    <section class="plan-section bg-alt">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">Get Started</span>
+          <h2 style="margin-top:var(--space-2)">Find the Right Way to Get Started</h2>
+          <p class="lede" style="margin-top:var(--space-3)">Choose a consultation or program based on the level of
+            support you're looking for.</p>
         </div>
 
-        <div class="journey-right">
-          <div class="plan-selector">
-            <h3>Find the Right Way to Get Started</h3>
-            <p class="text-muted"
-              style="font-size:var(--fs-small); margin-top:var(--space-2); margin-bottom:var(--space-5);">Choose a
-              consultation or program based on the level of support you're looking for.</p>
-
-            <div class="field">
-              <label for="goal-select">Consultation Goal</label>
-              <select id="goal-select" class="select-input" data-goal-select></select>
-            </div>
-
-            <div class="field">
-              <label>Choose Your Program</label>
-              <p class="swipe-hint">Swipe to compare →</p>
-              <div class="plan-grid" data-plan-grid></div>
-            </div>
-
-            <div class="selection-summary">
-              <div>
-                <div class="label">Your Selection</div>
-                <div class="value" data-selection-name>—</div>
-              </div>
-              <div class="value" data-selection-value>—</div>
-            </div>
-
-            <a href="./book-consultation/" class="btn btn-primary btn-block" data-plan-continue
-              data-track="start_booking">Continue to Booking →</a>
-
-            <div class="not-sure-box">
-              <div>
-                <strong>Not sure which option is right for you?</strong>
-                <p class="text-muted" style="font-size:var(--fs-small); margin-top:4px;">Start with a single
-                  consultation and discuss your goals directly.</p>
-              </div>
-              <a href="./book-consultation/?program=single-consultation" class="btn btn-secondary"
-                data-track="click_book_consultation">Start With a Consultation</a>
-            </div>
-
-            <p class="text-muted" style="font-size:var(--fs-caption); margin-top:var(--space-5);">
-              Your consultation and recommendations are personalized based on your individual needs and assessment. <a
-                href="./faq/#disclaimer" class="link-arrow" style="font-size:inherit;">Medical Disclaimer</a>
-            </p>
+        <div class="plan-selector">
+          <div class="field">
+            <label for="goal-select">Consultation Goal</label>
+            <select id="goal-select" class="select-input" data-goal-select></select>
           </div>
+
+          <div class="field">
+            <label>Choose Your Program</label>
+            <p class="swipe-hint">Swipe to compare →</p>
+            <div class="plan-grid" data-plan-grid></div>
+          </div>
+
+          <div class="selection-summary">
+            <div>
+              <div class="label">Your Selection</div>
+              <div class="value" data-selection-name>—</div>
+            </div>
+            <div class="value" data-selection-value>—</div>
+          </div>
+
+          <a href="./book-consultation/" class="btn btn-primary btn-block" data-plan-continue
+            data-track="start_booking">Continue to Booking →</a>
+
+          <div class="not-sure-box">
+            <div>
+              <strong>Not sure which option is right for you?</strong>
+              <p class="text-muted" style="font-size:var(--fs-small); margin-top:4px;">Start with a single
+                consultation and discuss your goals directly.</p>
+            </div>
+            <a href="./book-consultation/?program=single-consultation" class="btn btn-secondary"
+              data-track="click_book_consultation">Start With a Consultation</a>
+          </div>
+
+          <p class="text-muted" style="font-size:var(--fs-caption); margin-top:var(--space-5);">
+            Your consultation and recommendations are personalized based on your individual needs and assessment. <a
+              href="./faq/#disclaimer" class="link-arrow" style="font-size:inherit;">Medical Disclaimer</a>
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
+    <!-- TESTIMONIALS (hidden for now)
     <section class="bg-alt">
       <div class="container">
         <div class="section-head center">
@@ -214,6 +219,7 @@
         <div id="testimonial-list"></div>
       </div>
     </section>
+    -->
 
     <!-- FINAL CTA -->
     <section class="bg-dark">
@@ -302,22 +308,24 @@
     </div>`).join("");
 
     const testimonialList = document.getElementById("testimonial-list");
-    const [featured, ...rest] = SITE_DATA.testimonials;
-    testimonialList.innerHTML = `
-    <div class="testimonial-feature reveal">
-      ${featured.placeholder ? '<span class="placeholder-tag">Placeholder</span><br>' : ""}
-      <blockquote>&ldquo;${featured.quote}&rdquo;</blockquote>
-      <cite>${featured.name} — ${featured.service}</cite>
-    </div>
-    <div class="grid testimonial-grid">
-      ${rest.map(t => `
-        <div class="card testimonial-card reveal">
-          ${t.placeholder ? '<span class="placeholder-tag">Placeholder</span>' : ""}
-          <p>&ldquo;${t.quote}&rdquo;</p>
-          <cite>${t.name} — ${t.service}</cite>
-        </div>`).join("")}
-    </div>
-  `;
+    if (testimonialList) {
+      const [featured, ...rest] = SITE_DATA.testimonials;
+      testimonialList.innerHTML = `
+      <div class="testimonial-feature reveal">
+        ${featured.placeholder ? '<span class="placeholder-tag">Placeholder</span><br>' : ""}
+        <blockquote>&ldquo;${featured.quote}&rdquo;</blockquote>
+        <cite>${featured.name} — ${featured.service}</cite>
+      </div>
+      <div class="grid testimonial-grid">
+        ${rest.map(t => `
+          <div class="card testimonial-card reveal">
+            ${t.placeholder ? '<span class="placeholder-tag">Placeholder</span>' : ""}
+            <p>&ldquo;${t.quote}&rdquo;</p>
+            <cite>${t.name} — ${t.service}</cite>
+          </div>`).join("")}
+      </div>
+    `;
+    }
 
     [document.getElementById("nav-links"), document.getElementById("mobile-nav-links"), document.getElementById("footer-nav-links")].forEach(list => {
       list.innerHTML = SITE_DATA.nav.map(n => `<li><a href="${window.SITE_BASE}${n.href}">${n.label}</a></li>`).join("");

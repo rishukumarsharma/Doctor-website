@@ -3,4 +3,4 @@ Allow: /
 Disallow: /patient/
 Disallow: /admin/
 
-Sitemap: https://[yourdomain.com]/sitemap.xml
+Sitemap: https://nourishandtone.com/sitemap.xml

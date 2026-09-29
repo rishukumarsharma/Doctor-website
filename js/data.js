@@ -22,11 +22,10 @@ const SITE_DATA = {
   },
 
   nav: [
+    { label: "Home", href: "" },
     { label: "About", href: "about/" },
     { label: "Services", href: "services/" },
-    { label: "Results", href: "results/" },
     { label: "Pricing", href: "pricing/" },
-    { label: "Journal", href: "blog/" },
   ],
 
   specializations: [

@@ -54,7 +54,7 @@
     });
   }
 
-  /* ---------------- WhatsApp floating button + mobile sticky CTA ---------------- */
+  /* ---------------- WhatsApp floating button ---------------- */
   function injectGlobalCTAs() {
     if (!document.querySelector(".whatsapp-float")) {
       const wa = document.createElement("a");
@@ -68,15 +68,52 @@
       wa.addEventListener("click", () => track("click_whatsapp"));
       document.body.appendChild(wa);
     }
+  }
 
-    if (!document.querySelector(".mobile-sticky-cta")) {
-      const bar = document.createElement("div");
-      bar.className = "mobile-sticky-cta";
-      bar.innerHTML = `
-        <a class="btn btn-primary" href="${window.SITE_BASE}book-consultation/" data-track="click_book_consultation">Book Consultation</a>
-      `;
-      document.body.appendChild(bar);
+  /* ---------------- Sticky offer bar (countdown + book button, every page) ---------------- */
+  function initOfferBar() {
+    if (document.querySelector(".offer-bar")) return;
+
+    const DURATION_SECONDS = 5 * 60;
+    const STORAGE_KEY = "offerBarExpiresAt";
+    let expiresAt = Number(sessionStorage.getItem(STORAGE_KEY));
+    if (!expiresAt || expiresAt < Date.now()) {
+      expiresAt = Date.now() + DURATION_SECONDS * 1000;
+      try {
+        sessionStorage.setItem(STORAGE_KEY, String(expiresAt));
+      } catch (e) {
+        /* sessionStorage unavailable (private mode, etc.) — timer just won't persist across pages */
+      }
     }
+
+    const bar = document.createElement("div");
+    bar.className = "offer-bar";
+    bar.innerHTML = `
+      <div class="offer-copy">Offer Will Expire in
+        <span class="offer-timer"><strong data-offer-min>05</strong> Minutes <strong data-offer-sec>00</strong> Seconds</span>
+      </div>
+      <a class="btn btn-primary" href="${window.SITE_BASE}book-consultation/" data-track="click_book_consultation">Book Your Consultation</a>
+    `;
+    document.body.appendChild(bar);
+
+    const minEl = bar.querySelector("[data-offer-min]");
+    const secEl = bar.querySelector("[data-offer-sec]");
+
+    function tick() {
+      let remaining = Math.round((expiresAt - Date.now()) / 1000);
+      if (remaining <= 0) {
+        expiresAt = Date.now() + DURATION_SECONDS * 1000;
+        try {
+          sessionStorage.setItem(STORAGE_KEY, String(expiresAt));
+        } catch (e) {}
+        remaining = DURATION_SECONDS;
+      }
+      minEl.textContent = String(Math.floor(remaining / 60)).padStart(2, "0");
+      secEl.textContent = String(remaining % 60).padStart(2, "0");
+    }
+
+    tick();
+    setInterval(tick, 1000);
   }
 
   /* ---------------- Generic CTA click tracking ---------------- */
@@ -181,6 +218,7 @@
   document.addEventListener("DOMContentLoaded", () => {
     applyDataBindings();
     injectGlobalCTAs();
+    initOfferBar();
     initCtaTracking();
     initFaqAccordion();
     populateConsultationGoals();
