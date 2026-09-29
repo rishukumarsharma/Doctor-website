@@ -38,7 +38,7 @@ const SITE_DATA = {
       description:
         "Personalized nutrition, lifestyle guidance and progress monitoring built around your body, your routine and your goals.",
       href: "body-slimming/",
-      image: "assets/services/body-slimming.jpg",
+      image: "assets/images/herosection.png",
     },
     {
       id: "facial-aesthetics",
@@ -48,7 +48,7 @@ const SITE_DATA = {
       description:
         "A refined, evidence-informed approach to skin health, contouring and anti-ageing care — assessed and planned around your face.",
       href: "facial-aesthetics/",
-      image: "assets/services/facial-aesthetics.jpg",
+      image: "assets/images/Refined.png",
     },
   ],
 
