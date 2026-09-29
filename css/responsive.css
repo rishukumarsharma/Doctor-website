@@ -122,10 +122,15 @@
     font-size: var(--fs-caption);
   }
 
+  .plan-selector {
+    padding: var(--space-4);
+  }
+
   .plan-grid {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--space-4);
     gap: var(--space-3);
     margin-inline: 0;
     padding-inline: var(--space-4);
@@ -134,7 +139,7 @@
 
   .plan-card {
     min-width: 78%;
-    scroll-snap-align: center;
+    scroll-snap-align: start;
   }
 
   .swipe-hint {
@@ -156,6 +161,35 @@
 }
 
 @media (max-width: 640px) {
+  /* On phones the swipe carousel leaves the next card half-cut-off and
+     narrow, which reads as broken rather than "swipeable" (72px of
+     plan-selector padding plus a 78%-width card leaves ~150px for
+     content). A single full-width column lets people compare programs
+     by scrolling, which they already expect to do on this page. */
+  .plan-selector {
+    padding: var(--space-3);
+  }
+
+  .plan-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    overflow-x: visible;
+    scroll-snap-type: none;
+    margin-inline: 0;
+    padding-inline: 0;
+    padding-bottom: 0;
+    gap: var(--space-3);
+  }
+
+  .plan-card {
+    min-width: 0;
+    scroll-snap-align: none;
+  }
+
+  .swipe-hint {
+    display: none;
+  }
+
   .testimonial-grid {
     grid-template-columns: minmax(0, 1fr);
   }
