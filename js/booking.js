@@ -10,6 +10,25 @@
   const root = document.querySelector("[data-booking-app]");
   if (!DATA || !root) return;
 
+  // Google Apps Script Web App URL that appends each booking as a row in a
+  // Google Sheet. See README-booking-sheet.md for setup steps. Leave the
+  // placeholder in place and bookings simply won't be recorded remotely.
+  const BOOKING_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzjmgdnnL5jpJ2tqzBSciFeBNnIdlERz2fxA0YSI3XT0OB6vxbxHOMieV_maQvz9Czncg/exec";
+
+  function submitBookingToSheet(data) {
+    if (!BOOKING_SHEET_WEBHOOK_URL || BOOKING_SHEET_WEBHOOK_URL.indexOf("PASTE_YOUR") === 0) {
+      console.warn("Booking sheet webhook URL not configured — booking was not recorded.");
+      return;
+    }
+    // Sent as GET (data in the query string) rather than POST — Apps Script
+    // Web Apps relay a POST body through a second domain, and that hop can
+    // fail under browsers that block cross-site cookies. GET avoids it.
+    const url = BOOKING_SHEET_WEBHOOK_URL + "?" + new URLSearchParams(data).toString();
+    fetch(url, { mode: "no-cors" }).catch((err) => {
+      console.error("Failed to record booking to Google Sheet", err);
+    });
+  }
+
   const state = {
     step: 1,
     service: null,
@@ -190,6 +209,17 @@
       statusEl.textContent =
         "Payment integration not yet connected. This is a placeholder — no charge has been made. Our team will contact you to confirm and collect payment securely.";
       statusEl.style.color = "var(--color-muted)";
+      submitBookingToSheet({
+        timestamp: new Date().toISOString(),
+        service: state.service || "",
+        type: state.type || "",
+        date: state.date || "",
+        time: state.time || "",
+        name: state.name || "",
+        phone: state.phone || "",
+        email: state.email || "",
+        notes: state.notes || "",
+      });
       setTimeout(() => goToStep(6), 900);
     });
   }
