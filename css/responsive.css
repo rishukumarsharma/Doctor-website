@@ -86,10 +86,10 @@
     display: flex;
   }
 
-  /* the sticky bar already includes its own WhatsApp button, so the
-     floating bubble would just sit on top of it here */
+  /* lift the floating WhatsApp bubble above the sticky Book Consultation
+     bar so the two don't overlap */
   .whatsapp-float {
-    display: none;
+    bottom: calc(76px + var(--space-3));
   }
 
   body {
@@ -183,30 +183,61 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  /* full-bleed hero: too narrow now for a side panel — switch to a
-     full-width panel anchored to the bottom, with the scrim following.
-     Extra min-height gives tall wrapped copy room to sit fully inside
-     the opaque part of the gradient instead of spilling above it. */
+  /* full-bleed hero: the desktop treatment overlays copy directly on
+     the photo, which only works with a wide side panel for the text to
+     sit in. Below this breakpoint there's no room for that, so instead
+     of a scrim fighting a full-bleed background, drop the background
+     image entirely and show the photo as its own framed card below the
+     copy — same photo, same energy, laid out for a narrow screen. */
   .hero-fullbleed {
-    min-height: 620px;
-    align-items: flex-end;
-    padding-block-end: var(--space-5);
+    display: block;
+    min-height: 0;
+    background-image: none !important;
+    padding-block: clamp(6.5rem, 16vw, 8rem) var(--space-7);
+  }
+
+  .hero-fullbleed::before,
+  .hero-fullbleed::after {
+    content: none;
+  }
+
+  .hero-fullbleed .container {
+    display: block;
   }
 
   .hero-fullbleed .hero-copy {
     max-width: 100%;
-    padding: var(--space-4);
+    padding: 0;
   }
 
-  /* higher specificity than the desktop [data-focal="right"]::after rule,
-     so this actually overrides it instead of losing the cascade */
-  .hero-fullbleed[data-focal="right"]::after,
-  .hero-fullbleed::after {
-    background: linear-gradient(180deg,
-        rgba(var(--color-background-rgb), 0) 0%,
-        rgba(var(--color-background-rgb), 0) 30%,
-        rgba(var(--color-background-rgb), 0.85) 55%,
-        rgba(var(--color-background-rgb), 0.97) 78%,
-        rgba(var(--color-background-rgb), 0.97) 100%);
+  .hero-photo {
+    display: block;
+    position: relative;
+    margin-top: var(--space-6);
+  }
+  /* offset color panel peeking from behind the photo — the same
+     editorial "layered card" depth the site already uses elsewhere,
+     instead of the photo just floating in empty space */
+  .hero-photo::before {
+    content: "";
+    position: absolute;
+    /* the right bleed must stay smaller than the container's own side
+       gutter (as little as ~13px at a 320px viewport) or it overflows
+       the viewport instead of just peeking past the photo */
+    inset: var(--space-5) -8px calc(-1 * var(--space-3)) var(--space-5);
+    background: var(--color-secondary);
+    border-radius: var(--radius-lg);
+    z-index: 0;
+  }
+  .hero-photo img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 78% 35%;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
   }
 }

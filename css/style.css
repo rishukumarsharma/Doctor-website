@@ -373,7 +373,7 @@ section { padding-block: var(--space-8); }
   position: absolute;
   inset: 0 0 auto 0;
   height: clamp(120px, 16vw, 220px);
-  background: linear-gradient(180deg, rgba(var(--color-background-rgb), 0.6), rgba(var(--color-background-rgb), 0));
+  background: linear-gradient(180deg, rgba(var(--color-background-rgb), 0.82), rgba(var(--color-background-rgb), 0));
   z-index: 1;
   pointer-events: none;
 }
@@ -403,6 +403,9 @@ section { padding-block: var(--space-8); }
   padding-block: var(--space-6);
 }
 .hero-fullbleed .hero-copy h1 { text-wrap: balance; }
+/* real <img> card used only below the mobile breakpoint — the desktop
+   full-bleed background-image treatment stays untouched above it */
+.hero-photo { display: none; }
 .hero-fullbleed[data-focal="left"] { background-position: left center; }
 /* when the photo's subject sits on the right, flip the text and scrim to the
    empty left side instead of washing out over the subject, and anchor the

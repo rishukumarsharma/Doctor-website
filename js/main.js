@@ -73,7 +73,6 @@
       const bar = document.createElement("div");
       bar.className = "mobile-sticky-cta";
       bar.innerHTML = `
-        <a class="btn btn-secondary" href="${buildWhatsAppLink()}" target="_blank" rel="noopener" data-track="click_whatsapp">WhatsApp</a>
         <a class="btn btn-primary" href="${window.SITE_BASE}book-consultation/" data-track="click_book_consultation">Book Consultation</a>
       `;
       document.body.appendChild(bar);
