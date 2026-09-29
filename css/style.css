@@ -1394,7 +1394,7 @@ select:focus-visible {
 
 /* ---- Booking flow ---- */
 .booking-shell {
-  max-width: 760px;
+  width: min(92%, 760px);
   margin-inline: auto;
 }
 

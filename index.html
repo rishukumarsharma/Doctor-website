@@ -301,7 +301,7 @@
     const specGrid = document.getElementById("specialization-grid");
     specGrid.innerHTML = SITE_DATA.specializations.map(s => `
     <a href="${window.SITE_BASE}${s.href}" class="spec-card reveal">
-      <img src="${s.image}" alt="${s.title}" loading="lazy" onerror="this.remove();">
+      <img src="${s.image}" alt="${s.title}" loading="lazy" style="object-position:${s.imageFocal || 'center'}" onerror="this.remove();">
       <div class="spec-card-body">
         <span class="eyebrow">${s.eyebrow}</span>
         <h3>${s.title}</h3>
