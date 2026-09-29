@@ -1,8 +1,8 @@
 /* ==========================================================================
    BOOKING FLOW — multi-step vanilla JS wizard for book-consultation.html
-   Steps: Service -> Type -> Date -> Time -> Details -> Summary -> Payment -> Confirmation
-   No fake payment success — the payment step is a clearly-labeled placeholder
-   ready to be wired to a real, server-verified payment provider.
+   Steps: Service -> Type -> Date -> Time -> Details -> Summary/Confirm -> Confirmation
+   Each booking is recorded to a Google Sheet on confirm; payment is handled
+   separately by the team after the booking request comes through.
    ========================================================================== */
 
 (function () {
@@ -13,7 +13,7 @@
   // Google Apps Script Web App URL that appends each booking as a row in a
   // Google Sheet. See README-booking-sheet.md for setup steps. Leave the
   // placeholder in place and bookings simply won't be recorded remotely.
-  const BOOKING_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzjmgdnnL5jpJ2tqzBSciFeBNnIdlERz2fxA0YSI3XT0OB6vxbxHOMieV_maQvz9Czncg/exec";
+  const BOOKING_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxLb9gQkTSILpg7eSlB_Vpi_l6hIDLEEiWvmWvrMDowWD5XmNfrw_CKcQW95CsZ-YNLeQ/exec";
 
   function submitBookingToSheet(data) {
     if (!BOOKING_SHEET_WEBHOOK_URL || BOOKING_SHEET_WEBHOOK_URL.indexOf("PASTE_YOUR") === 0) {
@@ -201,13 +201,12 @@
     root.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  function handlePaymentStep() {
-    const payBtn = root.querySelector("[data-pay-action]");
+  function handleConfirmStep() {
+    const confirmBtn = root.querySelector("[data-pay-action]");
     const statusEl = root.querySelector("[data-payment-status]");
-    payBtn.addEventListener("click", () => {
-      window.trackEvent?.("payment_started");
-      statusEl.textContent =
-        "Payment integration not yet connected. This is a placeholder — no charge has been made. Our team will contact you to confirm and collect payment securely.";
+    confirmBtn.addEventListener("click", () => {
+      window.trackEvent?.("confirm_booking", { service: state.service });
+      statusEl.textContent = "Booking request sent — our team will be in touch shortly.";
       statusEl.style.color = "var(--color-muted)";
       submitBookingToSheet({
         timestamp: new Date().toISOString(),
@@ -229,7 +228,7 @@
     renderTypeOptions();
     renderDateOptions();
     renderTimeOptions();
-    handlePaymentStep();
+    handleConfirmStep();
 
     root.querySelectorAll("[data-action='next']").forEach((btn) => {
       btn.addEventListener("click", () => {
