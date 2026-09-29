@@ -19,6 +19,7 @@ const SITE_DATA = {
     whatsapp: "918277199017", // digits only, no + or spaces — used to build wa.me links
     email: "dramulyasm@gmail.com",
     timings: "Monday – Sunday, 07:00 AM – 10:00 PM",
+    openingHoursSchema: "Mo-Su 07:00-22:00", // schema.org / ISO format of `timings` above — keep in sync
   },
 
   nav: [
