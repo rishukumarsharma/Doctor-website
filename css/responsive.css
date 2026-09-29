@@ -7,10 +7,6 @@
   .footer-grid {
     grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1fr);
   }
-
-  .pricing-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 1024px) {
@@ -162,6 +158,7 @@
 }
 
 @media (max-width: 640px) {
+
   /* On phones the swipe carousel leaves the next card half-cut-off and
      narrow, which reads as broken rather than "swipeable" (72px of
      plan-selector padding plus a 78%-width card leaves ~150px for
@@ -200,10 +197,6 @@
   }
 
   .results-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .pricing-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -276,6 +269,7 @@
     position: relative;
     margin-top: var(--space-6);
   }
+
   /* offset color panel peeking from behind the photo — the same
      editorial "layered card" depth the site already uses elsewhere,
      instead of the photo just floating in empty space */
@@ -290,6 +284,7 @@
     border-radius: var(--radius-lg);
     z-index: 0;
   }
+
   .hero-photo img {
     position: relative;
     z-index: 1;
@@ -304,6 +299,7 @@
 }
 
 @media (max-width: 480px) {
+
   /* the offer bar wraps to two rows on very narrow phones — stack it
      on purpose so the button stays full-width and tappable, and lift
      the body/WhatsApp offsets to match the taller bar */

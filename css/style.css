@@ -260,12 +260,6 @@ section {
   justify-content: center;
 }
 
-.flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 /* ---- Buttons ---- */
 .btn {
   display: inline-flex;
@@ -302,6 +296,11 @@ section {
 .btn-secondary:hover {
   border-color: var(--color-primary);
   background: var(--color-surface);
+}
+
+.bg-dark .btn-secondary {
+  border-color: rgba(248, 245, 238, 0.4);
+  color: var(--color-text-inverse);
 }
 
 .btn-dark {
@@ -1639,11 +1638,6 @@ select:focus-visible {
 
 .result-card .caption {
   margin-top: var(--space-3);
-}
-
-/* ---- Pricing page ---- */
-.pricing-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 /* ---- Empty / error states ---- */

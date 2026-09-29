@@ -43,6 +43,21 @@
 
   const totalSteps = 6;
 
+  // Wires up "pick one card in this container" behaviour shared by the
+  // service, type and time-slot steps: clicking a card clears any sibling
+  // selection, marks the clicked one, runs onSelect, then re-checks the
+  // step's Continue button.
+  function selectOne(container, selector, onSelect) {
+    container.querySelectorAll(selector).forEach((card) => {
+      card.addEventListener("click", () => {
+        container.querySelectorAll(selector).forEach((c) => c.classList.remove("is-selected"));
+        card.classList.add("is-selected");
+        onSelect(card);
+        updateNextEnabled();
+      });
+    });
+  }
+
   function renderServiceOptions() {
     const params = new URLSearchParams(window.location.search);
     const presetProgram = params.get("program");
@@ -60,14 +75,9 @@
       )
       .join("");
 
-    container.querySelectorAll(".option-card").forEach((card) => {
-      card.addEventListener("click", () => {
-        container.querySelectorAll(".option-card").forEach((c) => c.classList.remove("is-selected"));
-        card.classList.add("is-selected");
-        state.service = card.dataset.serviceName;
-        window.trackEvent?.("select_service", { service: state.service });
-        updateNextEnabled();
-      });
+    selectOne(container, ".option-card", (card) => {
+      state.service = card.dataset.serviceName;
+      window.trackEvent?.("select_service", { service: state.service });
     });
 
     if (presetProgram) {
@@ -91,13 +101,8 @@
       </div>`
       )
       .join("");
-    container.querySelectorAll(".option-card").forEach((card) => {
-      card.addEventListener("click", () => {
-        container.querySelectorAll(".option-card").forEach((c) => c.classList.remove("is-selected"));
-        card.classList.add("is-selected");
-        state.type = card.querySelector("strong").textContent;
-        updateNextEnabled();
-      });
+    selectOne(container, ".option-card", (card) => {
+      state.type = card.querySelector("strong").textContent;
     });
   }
 
@@ -127,14 +132,9 @@
           `<div class="time-slot${unavailable.has(t) ? " is-disabled" : ""}" data-time="${t}">${t}</div>`
       )
       .join("")}</div>`;
-    container.querySelectorAll(".time-slot:not(.is-disabled)").forEach((slot) => {
-      slot.addEventListener("click", () => {
-        container.querySelectorAll(".time-slot").forEach((s) => s.classList.remove("is-selected"));
-        slot.classList.add("is-selected");
-        state.time = slot.dataset.time;
-        window.trackEvent?.("select_time", { time: state.time });
-        updateNextEnabled();
-      });
+    selectOne(container, ".time-slot:not(.is-disabled)", (slot) => {
+      state.time = slot.dataset.time;
+      window.trackEvent?.("select_time", { time: state.time });
     });
   }
 
