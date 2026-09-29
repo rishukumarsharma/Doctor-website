@@ -105,7 +105,7 @@
         expiresAt = Date.now() + DURATION_SECONDS * 1000;
         try {
           sessionStorage.setItem(STORAGE_KEY, String(expiresAt));
-        } catch (e) {}
+        } catch (e) { }
         remaining = DURATION_SECONDS;
       }
       minEl.textContent = String(Math.floor(remaining / 60)).padStart(2, "0");

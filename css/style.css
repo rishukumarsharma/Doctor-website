@@ -437,6 +437,10 @@ select:focus-visible {
   color: var(--color-primary);
 }
 
+.main-nav a.btn {
+  color: var(--color-text-inverse);
+}
+
 .nav-toggle {
   display: none;
   flex-direction: column;
