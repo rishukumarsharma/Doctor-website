@@ -32,6 +32,7 @@
   const state = {
     step: 1,
     service: null,
+    treatment: new URLSearchParams(window.location.search).get("treatment") || "",
     type: null,
     date: null,
     time: null,
@@ -165,6 +166,7 @@
   function renderSummary() {
     const container = root.querySelector("[data-step-summary]");
     container.innerHTML = `
+      ${state.treatment ? `<div class="summary-row"><span>Treatment</span><strong>${state.treatment.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c])}</strong></div>` : ""}
       <div class="summary-row"><span>Service</span><strong>${state.service || "—"}</strong></div>
       <div class="summary-row"><span>Consultation Type</span><strong>${state.type || "—"}</strong></div>
       <div class="summary-row"><span>Date</span><strong>${state.date || "—"}</strong></div>
@@ -304,6 +306,7 @@
         phone: state.phone || "",
         email: state.email || "",
         notes: state.notes || "",
+        treatment: state.treatment || "",
       });
       fireConfetti();
       showConfirmPopup();

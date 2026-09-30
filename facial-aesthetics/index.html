@@ -126,7 +126,7 @@
       <div class="meta">
         <span class="text-muted" style="font-size:var(--fs-small)">${s.duration}</span>
         <span class="price">${s.price}</span>
-        <a href="../book-consultation/" class="btn btn-secondary" data-track="click_book_consultation">Book</a>
+        <a href="../book-consultation/?treatment=${encodeURIComponent(s.name)}" class="btn btn-secondary" data-track="click_book_consultation">Book</a>
       </div>
     </div>`).join("");
 

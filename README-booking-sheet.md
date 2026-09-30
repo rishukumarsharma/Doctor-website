@@ -19,7 +19,7 @@ more reliable for this use case.
    spreadsheet, e.g. **"Consultation Bookings"**.
 2. Rename the first tab to `Bookings`.
 3. Add this header row:
-   `Timestamp | Service | Type | Date | Time | Name | Phone | Email | Notes`
+   `Timestamp | Service | Treatment | Type | Date | Time | Name | Phone | Email | Notes`
 
 ## 2. Add the Apps Script
 
@@ -42,7 +42,7 @@ function recordBooking(e) {
   if (!sheet) {
     sheet = ss.insertSheet("Bookings");
     sheet.appendRow([
-      "Timestamp", "Service", "Type", "Date", "Time",
+      "Timestamp", "Service", "Treatment", "Type", "Date", "Time",
       "Name", "Phone", "Email", "Notes",
     ]);
   }
@@ -51,6 +51,7 @@ function recordBooking(e) {
   sheet.appendRow([
     p.timestamp || new Date().toISOString(),
     p.service || "",
+    p.treatment || "",
     p.type || "",
     p.date || "",
     p.time || "",
