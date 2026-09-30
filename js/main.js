@@ -11,6 +11,7 @@
   function track(eventName, payload) {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: eventName, ...payload });
+    if (typeof window.gtag === "function") window.gtag("event", eventName, payload || {});
     if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
       console.log("[analytics]", eventName, payload || {});
     }
