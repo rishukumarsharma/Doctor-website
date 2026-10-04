@@ -15,6 +15,22 @@
   // placeholder in place and bookings simply won't be recorded remotely.
   const BOOKING_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxLb9gQkTSILpg7eSlB_Vpi_l6hIDLEEiWvmWvrMDowWD5XmNfrw_CKcQW95CsZ-YNLeQ/exec";
 
+  // Readable "submitted at" timestamp for the sheet, e.g. "29 Sep 2026, 12:43 PM"
+  // — a raw toISOString() (2026-09-29T07:13:20.402Z) isn't something clinic
+  // staff should have to parse. Always in IST, since that's the clinic's timezone.
+  function formatTimestamp(date) {
+    const formatted = new Intl.DateTimeFormat("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "Asia/Kolkata",
+    }).format(date);
+    return formatted.replace(" at ", ", ");
+  }
+
   function submitBookingToSheet(data) {
     if (!BOOKING_SHEET_WEBHOOK_URL || BOOKING_SHEET_WEBHOOK_URL.indexOf("PASTE_YOUR") === 0) {
       console.warn("Booking sheet webhook URL not configured — booking was not recorded.");
@@ -317,7 +333,7 @@
       statusEl.textContent = "Booking request sent — our team will be in touch shortly.";
       statusEl.style.color = "var(--color-muted)";
       submitBookingToSheet({
-        timestamp: new Date().toISOString(),
+        timestamp: formatTimestamp(new Date()),
         service: state.service || "",
         type: state.type || "",
         date: state.date || "",
