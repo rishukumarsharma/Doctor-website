@@ -11,7 +11,7 @@ const SITE_DATA = {
     title: "Body Slimming & Facial Aesthetics Specialist",
     philosophy:
       "Every plan starts with a real conversation — your goals, your routine, your history — before it starts with a protocol.",
-    image: "assets/images/doctor.JPG",
+    image: "assets/photos/doctor-portrait.jpg",
   },
 
   contact: {
@@ -38,7 +38,7 @@ const SITE_DATA = {
       description:
         "Personalized nutrition, lifestyle guidance and progress monitoring built around your body, your routine and your goals.",
       href: "body-slimming/",
-      image: "assets/images/herosection.png",
+      image: "assets/photos/hero-patient-care.png",
       imageFocal: "85% 15%",
     },
     {
@@ -49,7 +49,7 @@ const SITE_DATA = {
       description:
         "A refined, evidence-informed approach to skin health, contouring and anti-ageing care — assessed and planned around your face.",
       href: "facial-aesthetics/",
-      image: "assets/images/Refined.png",
+      image: "assets/photos/facial-aesthetics-card.png",
       imageFocal: "75% 15%",
     },
   ],
