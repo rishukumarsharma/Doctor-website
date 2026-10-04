@@ -210,14 +210,79 @@
     align-items: flex-start;
   }
 
-  .service-row {
-    grid-template-columns: 40px minmax(0, 1fr);
+  /* Card view on phones */
+  #body-slimming-list,
+  #body-slimming-services,
+  #facial-services,
+  #facial-aesthetics-list {
+    display: grid;
+    gap: var(--space-3);
   }
 
+  .service-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-2);
+    align-items: start;
+    padding: var(--space-5) var(--space-4) var(--space-4);
+    background: var(--color-surface, #fff);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  .service-row:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* 1. small step label  2. title  3. muted description  4. action footer */
+  .service-row .num {
+    font-family: var(--font-body, inherit);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--color-secondary);
+  }
+
+  .service-row h3 {
+    font-size: 1.3rem;
+    line-height: 1.25;
+    margin-bottom: var(--space-2);
+  }
+
+  .service-row h3 + p {
+    line-height: 1.6;
+  }
+
+  /* price is the key figure, duration is supporting, Book is the action */
   .service-row .meta {
-    grid-column: 1 / -1;
-    justify-content: space-between;
-    margin-top: var(--space-2);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "price btn" "dur btn";
+    column-gap: var(--space-3);
+    row-gap: 2px;
+    align-items: center;
+    margin-top: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .service-row .meta .price {
+    grid-area: price;
+    font-size: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .service-row .meta > span:first-child {
+    grid-area: dur;
+    font-size: 0.8rem !important;
+  }
+
+  .service-row .meta .btn {
+    grid-area: btn;
+    padding: 0.7rem 1.6rem;
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
   }
 
   .testimonial-feature {

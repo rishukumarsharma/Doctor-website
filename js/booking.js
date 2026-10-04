@@ -112,8 +112,17 @@
     const input = document.createElement("input");
     input.type = "date";
     input.className = "select-input";
-    input.min = new Date().toISOString().split("T")[0];
+    const now = new Date();
+    const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    input.min = today;
     input.addEventListener("change", () => {
+      // Typed-in past dates bypass the picker's min, so reject them here too.
+      if (input.value && input.value < today) {
+        input.value = "";
+        state.date = null;
+        updateNextEnabled();
+        return;
+      }
       state.date = input.value;
       window.trackEvent?.("select_date", { date: input.value });
       updateNextEnabled();
@@ -136,6 +145,17 @@
     selectOne(container, ".time-slot:not(.is-disabled)", (slot) => {
       state.time = slot.dataset.time;
       window.trackEvent?.("select_time", { time: state.time });
+    });
+  }
+
+  function setupPhoneInput() {
+    const phone = root.querySelector('[name="phone"]');
+    if (!phone) return;
+    phone.setAttribute("inputmode", "numeric");
+    phone.setAttribute("maxlength", "10");
+    phone.setAttribute("pattern", "[0-9]{10}");
+    phone.addEventListener("input", () => {
+      phone.value = phone.value.replace(/\D/g, "").slice(0, 10);
     });
   }
 
@@ -318,6 +338,7 @@
     renderServiceOptions();
     renderTypeOptions();
     renderDateOptions();
+    setupPhoneInput();
     renderTimeOptions();
     handleConfirmStep();
 
