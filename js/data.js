@@ -11,7 +11,7 @@ const SITE_DATA = {
     title: "Body Slimming & Facial Aesthetics Specialist",
     philosophy:
       "Every plan starts with a real conversation — your goals, your routine, your history — before it starts with a protocol.",
-    image: "assets/doctor/doctor-portrait.jpg",
+    image: "assets/images/doctor.JPG",
   },
 
   contact: {

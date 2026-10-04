@@ -13,6 +13,16 @@ hop can fail in browsers that block cross-site cookies (Safari/Chrome).
 GET requests hit the Web App URL directly with no extra hop, so they're far
 more reliable for this use case.
 
+## Form validation (client side)
+
+`js/booking.js` enforces these before a booking is sent:
+
+- **Date:** past dates can't be chosen (the picker's minimum is today in the
+  visitor's local time, and a typed-in past date is rejected).
+- **Phone:** digits only, maximum 10 (non-digits are stripped as the user
+  types or pastes); exactly 10 digits are required to continue.
+- **Email:** optional, but must look like a valid address if filled in.
+
 ## 1. Create the sheet
 
 1. Go to [sheets.google.com](https://sheets.google.com) and create a new
@@ -85,7 +95,9 @@ you want to test either way.
 
 ## 4. Wire it into the site
 
-Open [js/booking.js](js/booking.js) and replace the placeholder near the top:
+Open [js/booking.js](js/booking.js) and set the constant near the top (it is
+already set to the current deployment; replace it if you redeploy under a new
+URL):
 
 ```js
 const BOOKING_SHEET_WEBHOOK_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
