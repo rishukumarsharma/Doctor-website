@@ -149,7 +149,7 @@
 
   function renderTimeOptions() {
     const container = root.querySelector("[data-step-time]");
-    const slots = ["10:00 AM", "11:00 AM", "12:30 PM", "2:00 PM", "3:30 PM", "5:00 PM", "6:00 PM", "6:45 PM"];
+    const slots = ["10:00 AM", "11:00 AM", "12:30 PM", "2:00 PM", "3:30 PM", "5:00 PM", "6:00 PM", "6:45 PM", "9:00 PM", "10:00 PM"];
     // Deterministic placeholder unavailability so the "disabled slot" state is visible.
     const unavailable = new Set(["12:30 PM", "6:45 PM"]);
     container.innerHTML = `<div class="time-slot-grid">${slots
