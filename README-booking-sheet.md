@@ -29,7 +29,7 @@ more reliable for this use case.
    spreadsheet, e.g. **"Consultation Bookings"**.
 2. Rename the first tab to `Bookings`.
 3. Add this header row:
-   `Timestamp | Service | Treatment | Type | Date | Time | Name | Phone | Email | Notes`
+   `Timestamp | Service | Treatment | Consultation Goal | Type | Date | Time | Name | Phone | Email | Notes`
 
 ## 2. Add the Apps Script
 
@@ -52,7 +52,7 @@ function recordBooking(e) {
   if (!sheet) {
     sheet = ss.insertSheet("Bookings");
     sheet.appendRow([
-      "Timestamp", "Service", "Treatment", "Type", "Date", "Time",
+      "Timestamp", "Service", "Treatment", "Goal", "Type", "Date", "Time",
       "Name", "Phone", "Email", "Notes",
     ]);
   }
@@ -62,6 +62,7 @@ function recordBooking(e) {
     p.timestamp || new Date().toISOString(),
     p.service || "",
     p.treatment || "",
+    p.goal || "",
     p.type || "",
     p.date || "",
     p.time || "",
@@ -81,6 +82,14 @@ This version doesn't depend on your existing tab's name — it creates a
 `Bookings` tab (with headers) the first time it runs if one doesn't already
 exist, and reuses it afterward. It also handles both GET and POST, in case
 you want to test either way.
+
+> **Already have a sheet running?** The site now also sends a `goal` field
+> (the "Consultation Goal" chosen on the home page). Your already-deployed
+> Apps Script will silently ignore it until you: open the script editor,
+> replace the code with the version above (now includes the `Goal` column),
+> add `Goal` as a header in your existing sheet in the same position, and
+> create a **new deployment version** (step 3 below) — editing the code
+> alone does not update a live `/exec` URL.
 
 ## 3. Deploy as a Web App
 

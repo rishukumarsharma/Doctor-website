@@ -157,27 +157,51 @@
   }
 
   /* ---------------- Journey + Plan selector (Section 18A) ---------------- */
+  function parseRupee(str) {
+    if (!str) return 0;
+    if (/free/i.test(str)) return 0;
+    return Number(String(str).replace(/[^\d]/g, "")) || 0;
+  }
+
   function renderPlanSelector() {
     const grid = document.querySelector("[data-plan-grid]");
     if (!grid) return;
 
     grid.innerHTML = DATA.programs
-      .map(
-        (p) => `
-      <div class="plan-card" data-plan-id="${p.id}" data-price="${p.price}" data-name="${p.name}" tabindex="0" role="button" aria-pressed="false">
+      .map((p) => {
+        const origAmount = parseRupee(p.originalPrice);
+        const priceAmount = parseRupee(p.price);
+        const savings = origAmount - priceAmount;
+        const discountPct = p.originalPrice && origAmount > 0 && priceAmount > 0 ? Math.round((savings / origAmount) * 100) : null;
+        return `
+      <div class="plan-card" data-plan-id="${p.id}" data-price="${p.price}" data-name="${p.name}" data-savings="${savings}" tabindex="0" role="button" aria-pressed="false">
         ${p.recommended ? '<span class="badge">Recommended</span>' : ""}
         <span class="check" aria-hidden="true"></span>
-        <div class="duration">${p.duration}</div>
-        <div class="price">${p.price}${p.originalPrice ? ` <span style="text-decoration:line-through">${p.originalPrice}</span>` : ""}</div>
-        <p class="text-muted" style="font-size:.8rem">${p.description}</p>
+        <div class="plan-card-top">
+          <span class="duration">${p.duration}</span>
+          ${discountPct ? `<span class="discount-badge">Save ${discountPct}%</span>` : ""}
+        </div>
+        <div class="price">${p.price}${p.originalPrice ? ` <span>${p.originalPrice}</span>` : ""}</div>
+        <p class="tagline">${p.description}</p>
         <ul>${p.features.map((f) => `<li>${f}</li>`).join("")}</ul>
-      </div>`
-      )
+      </div>`;
+      })
       .join("");
 
     const summaryValue = document.querySelector("[data-selection-value]");
     const summaryLabel = document.querySelector("[data-selection-name]");
+    const summarySave = document.querySelector("[data-selection-save]");
     const continueBtn = document.querySelector("[data-plan-continue]");
+    const goalSelect = document.querySelector("[data-goal-select]");
+
+    function updateContinueHref() {
+      if (!continueBtn) return;
+      const planId = grid.querySelector(".plan-card.is-selected")?.dataset.planId;
+      const params = new URLSearchParams();
+      if (planId) params.set("program", planId);
+      if (goalSelect && goalSelect.value) params.set("goal", goalSelect.value);
+      continueBtn.href = `${window.SITE_BASE}book-consultation/?${params.toString()}`;
+    }
 
     function selectPlan(card) {
       grid.querySelectorAll(".plan-card").forEach((c) => {
@@ -188,7 +212,11 @@
       card.setAttribute("aria-pressed", "true");
       if (summaryValue) summaryValue.textContent = card.dataset.price;
       if (summaryLabel) summaryLabel.textContent = card.dataset.name + " Program";
-      if (continueBtn) continueBtn.href = `${window.SITE_BASE}book-consultation/?program=${card.dataset.planId}`;
+      if (summarySave) {
+        const savings = Number(card.dataset.savings) || 0;
+        summarySave.textContent = savings > 0 ? `You save ₹${savings.toLocaleString("en-IN")}` : "";
+      }
+      updateContinueHref();
       track("select_service", { plan: card.dataset.planId });
     }
 
@@ -201,6 +229,8 @@
         }
       });
     });
+
+    if (goalSelect) goalSelect.addEventListener("change", updateContinueHref);
 
     // Pre-select the recommended plan by default.
     const recommended = grid.querySelector('.plan-card[data-plan-id]');
