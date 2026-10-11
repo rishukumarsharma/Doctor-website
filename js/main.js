@@ -16,10 +16,7 @@
     !DATA.googleAds.conversionId.includes("X")
   ) {
     window.dataLayer = window.dataLayer || [];
-    const isAlreadyConfigured =
-      Array.isArray(window.dataLayer) &&
-      window.dataLayer.some((entry) => entry && entry[0] === "config" && entry[1] === DATA.googleAds.conversionId);
-    if (!isAlreadyConfigured && typeof window.gtag === "function") {
+    if (typeof window.gtag === "function") {
       window.gtag("config", DATA.googleAds.conversionId);
     }
   }
