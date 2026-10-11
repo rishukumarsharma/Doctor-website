@@ -7,16 +7,111 @@
   const DATA = window.SITE_DATA;
   if (!DATA) return;
 
-  /* ---------------- Analytics (stub — wire to a real provider later) ---------------- */
+  /* ---------------- Analytics & Google Ads Conversion Tracking ---------------- */
+  // Initialize Google Ads tag dynamically if configured in SITE_DATA
+  if (
+    DATA.googleAds &&
+    DATA.googleAds.conversionId &&
+    DATA.googleAds.conversionId !== "AW-XXXXXXXXX" &&
+    !DATA.googleAds.conversionId.includes("X")
+  ) {
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag === "function") {
+      window.gtag("config", DATA.googleAds.conversionId);
+    }
+  }
+
+  function sendGoogleAdsConversion(conversionLabel, extraPayload) {
+    if (!conversionLabel || typeof window.gtag !== "function") return;
+
+    let sendTo = String(conversionLabel).trim();
+    if (!sendTo) return;
+
+    // Support either just the label (e.g. "AbCdEf123") or full target ("AW-XXXXXXXXX/AbCdEf123")
+    if (DATA.googleAds && DATA.googleAds.conversionId && !sendTo.includes("/") && !sendTo.startsWith("AW-")) {
+      sendTo = `${DATA.googleAds.conversionId}/${sendTo}`;
+    }
+
+    // Skip if placeholder
+    if (sendTo.includes("AW-XXXXXXXXX") || sendTo.includes("CONVERSION_LABEL") || sendTo.includes("XXXXXXXXX")) {
+      if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+        console.log("[google-ads] Skipping conversion due to placeholder ID/label:", sendTo);
+      }
+      return;
+    }
+
+    const convData = {
+      send_to: sendTo,
+      currency: DATA.googleAds?.currency || "INR",
+      ...(extraPayload || {})
+    };
+
+    window.gtag("event", "conversion", convData);
+
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      console.log("[google-ads] Conversion sent:", convData);
+    }
+  }
+
   function track(eventName, payload) {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: eventName, ...payload });
-    if (typeof window.gtag === "function") window.gtag("event", eventName, payload || {});
+    if (typeof window.gtag === "function") {
+      window.gtag("event", eventName, payload || {});
+    }
+
+    // Map site actions to Google Ads conversions and GA4 standard events
+    const ads = DATA.googleAds || {};
+    const labels = ads.labels || {};
+
+    switch (eventName) {
+      case "confirm_booking":
+        sendGoogleAdsConversion(labels.bookingConfirmed, { value: 1.0, ...payload });
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "generate_lead", {
+            event_category: "Booking",
+            event_label: payload?.service || "Consultation",
+            value: 1.0,
+            currency: ads.currency || "INR",
+          });
+        }
+        break;
+
+      case "start_booking":
+        sendGoogleAdsConversion(labels.bookingStarted, payload);
+        break;
+
+      case "click_whatsapp":
+        sendGoogleAdsConversion(labels.whatsappClick, payload);
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "contact", { method: "WhatsApp" });
+        }
+        break;
+
+      case "click_phone":
+        sendGoogleAdsConversion(labels.phoneClick, payload);
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "contact", { method: "Phone" });
+        }
+        break;
+
+      case "contact_form_submitted":
+        sendGoogleAdsConversion(labels.contactFormSubmit, payload);
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "generate_lead", {
+            event_category: "Contact Form",
+            event_label: "Inquiry",
+          });
+        }
+        break;
+    }
+
     if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
       console.log("[analytics]", eventName, payload || {});
     }
   }
   window.trackEvent = track;
+  window.sendGoogleAdsConversion = sendGoogleAdsConversion;
 
   /* ---------------- WhatsApp link helper ---------------- */
   function buildWhatsAppLink(prefill) {
@@ -117,10 +212,15 @@
     setInterval(tick, 1000);
   }
 
-  /* ---------------- Generic CTA click tracking ---------------- */
+  /* ---------------- Generic CTA & Phone click tracking ---------------- */
   function initCtaTracking() {
     document.querySelectorAll("[data-track]").forEach((el) => {
       el.addEventListener("click", () => track(el.getAttribute("data-track")));
+    });
+
+    // Automatically track phone call clicks across the site
+    document.querySelectorAll('a[href^="tel:"], [data-bind-href="contact.telLink"]').forEach((el) => {
+      el.addEventListener("click", () => track("click_phone", { method: "phone" }));
     });
   }
 

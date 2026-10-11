@@ -22,6 +22,30 @@ const SITE_DATA = {
     openingHoursSchema: "Mo-Su 07:00-22:00", // schema.org / ISO format of `timings` above — keep in sync
   },
 
+  /* ---------------- Google Ads & Conversion Tracking Configuration ----------------
+     To activate Google Ads conversion tracking:
+     1. Replace 'AW-XXXXXXXXX' with your Google Ads Conversion ID (starts with AW-).
+     2. (Optional) If you have set up specific Conversion Actions in Google Ads
+        (under Goals > Conversions > Summary), paste the Conversion Action Label or
+        the full 'AW-XXXXXXXXX/Label' into each field below.
+     3. When set, conversion events will automatically be transmitted to Google Ads!
+     ---------------------------------------------------------------------------------- */
+  googleAds: {
+    // Primary Google Ads Tag / Conversion ID
+    conversionId: "AW-18505921013",
+
+    // Optional: Conversion labels for specific conversion actions created in Google Ads
+    labels: {
+      bookingConfirmed: "",    // Fired on consultation booking completion (High value lead)
+      bookingStarted: "",      // Fired when patient starts booking flow
+      whatsappClick: "",       // Fired when clicking WhatsApp buttons
+      phoneClick: "",          // Fired when clicking phone call links
+      contactFormSubmit: "",   // Fired on contact form submission
+    },
+
+    currency: "INR",
+  },
+
   nav: [
     { label: "Home", href: "" },
     { label: "About", href: "about/" },
