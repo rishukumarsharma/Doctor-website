@@ -37,7 +37,7 @@ const SITE_DATA = {
 
     // Optional: Conversion labels for specific conversion actions created in Google Ads
     labels: {
-      bookingConfirmed: "",    // Fired on consultation booking completion (High value lead)
+      bookingConfirmed: "AW-18505921013/xIb_CIOw8JgdEPXjp_hE",    // Fired on consultation booking completion (High value lead)
       bookingStarted: "",      // Fired when patient starts booking flow
       whatsappClick: "",       // Fired when clicking WhatsApp buttons
       phoneClick: "",          // Fired when clicking phone call links

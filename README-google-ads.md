@@ -16,7 +16,7 @@ googleAds: {
 
   // (Optional) Conversion action labels created in Google Ads:
   labels: {
-    bookingConfirmed: "",    // e.g. "AW-18505921013/AbCdEfGhIjK" or "AbCdEfGhIjK"
+    bookingConfirmed: "AW-18505921013/xIb_CIOw8JgdEPXjp_hE", // Consultation Booking (Active)
     bookingStarted: "",      // Optional
     whatsappClick: "",       // Optional
     phoneClick: "",          // Optional
