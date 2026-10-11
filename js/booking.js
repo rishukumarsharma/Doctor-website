@@ -12,8 +12,10 @@
 
   // Google Apps Script Web App URL that appends each booking as a row in a
   // Google Sheet. See README-booking-sheet.md for setup steps. Leave the
-  // placeholder in place and bookings simply won't be recorded remotely.
-  const BOOKING_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxLb9gQkTSILpg7eSlB_Vpi_l6hIDLEEiWvmWvrMDowWD5XmNfrw_CKcQW95CsZ-YNLeQ/exec";
+  const BOOKING_SHEET_WEBHOOK_URL =
+    DATA.contact?.sheetWebhookUrl ||
+    DATA.sheetWebhookUrl ||
+    "https://script.google.com/macros/s/AKfycbxLb9gQkTSILpg7eSlB_Vpi_l6hIDLEEiWvmWvrMDowWD5XmNfrw_CKcQW95CsZ-YNLeQ/exec";
 
   // Readable "submitted at" timestamp for the sheet, e.g. "29 Sep 2026, 12:43 PM"
   // — a raw toISOString() (2026-09-29T07:13:20.402Z) isn't something clinic

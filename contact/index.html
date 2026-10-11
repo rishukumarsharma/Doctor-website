@@ -133,12 +133,20 @@
 
 <script src="../js/schema.js"></script>
 <script>
-  document.getElementById("contact-form").addEventListener("submit", (e) => {
+  const form = document.getElementById("contact-form");
+  const phoneInput = form.querySelector('[name="phone"]');
+
+  // Digits-only restriction as user types
+  phoneInput.addEventListener("input", (e) => {
+    e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
+  });
+
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const form = e.target;
     const name = form.name.value.trim();
     const phone = form.phone.value.trim();
     const email = form.email.value.trim();
+    const message = (form.message && form.message.value.trim()) || "";
     let valid = true;
 
     const setError = (field, condition, message) => {
@@ -152,9 +160,59 @@
     setError(form.email, email && !/^\S+@\S+\.\S+$/.test(email), "Please enter a valid email address.");
 
     if (!valid) return;
-    window.trackEvent?.("contact_form_submitted");
-    document.getElementById("contact-success").style.display = "block";
-    form.reset();
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const successEl = document.getElementById("contact-success");
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+    }
+
+    // Google Sheet webhook
+    const webhookUrl =
+      (window.SITE_DATA && window.SITE_DATA.contact && window.SITE_DATA.contact.sheetWebhookUrl) ||
+      (window.SITE_DATA && window.SITE_DATA.sheetWebhookUrl) ||
+      "https://script.google.com/macros/s/AKfycbxLb9gQkTSILpg7eSlB_Vpi_l6hIDLEEiWvmWvrMDowWD5XmNfrw_CKcQW95CsZ-YNLeQ/exec";
+
+    const now = new Date();
+    const timestamp = new Intl.DateTimeFormat("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "Asia/Kolkata",
+    }).format(now).replace(" at ", ", ");
+
+    const payload = {
+      timestamp: timestamp,
+      service: "Contact Inquiry",
+      treatment: "Website Message",
+      goal: "Contact Form",
+      type: "Message",
+      date: new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Kolkata" }).format(now),
+      time: "-",
+      name: name,
+      phone: phone,
+      email: email,
+      notes: message,
+    };
+
+    const url = webhookUrl + "?" + new URLSearchParams(payload).toString();
+    fetch(url, { mode: "no-cors" })
+      .catch((err) => {
+        console.error("Failed to record contact inquiry to Google Sheet", err);
+      })
+      .finally(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send Message";
+        }
+        window.trackEvent?.("contact_form_submitted", { name, phone });
+        if (successEl) successEl.style.display = "block";
+        form.reset();
+      });
   });
 </script>
 <script src="../js/navigation.js"></script>

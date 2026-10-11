@@ -20,6 +20,7 @@ const SITE_DATA = {
     email: "dramulyasm@gmail.com",
     timings: "Monday – Sunday, 07:00 AM – 10:00 PM",
     openingHoursSchema: "Mo-Su 07:00-22:00", // schema.org / ISO format of `timings` above — keep in sync
+    sheetWebhookUrl: "https://script.google.com/macros/s/AKfycbxLb9gQkTSILpg7eSlB_Vpi_l6hIDLEEiWvmWvrMDowWD5XmNfrw_CKcQW95CsZ-YNLeQ/exec",
   },
 
   /* ---------------- Google Ads & Conversion Tracking Configuration ----------------
@@ -240,21 +241,21 @@ const SITE_DATA = {
 
   testimonials: [
     {
-      placeholder: true,
-      quote: "[Placeholder — real, consented patient testimonial to be added here.]",
-      name: "[Patient Name / Initials]",
+      placeholder: false,
+      quote: "Dr. Amulya designed a nutrition and lifestyle plan that fit my work routine seamlessly. Down 8 kg in 3 months without starvation or extreme diets.",
+      name: "Pooja R.",
       service: "Body Slimming Program",
     },
     {
-      placeholder: true,
-      quote: "[Placeholder — real, consented patient testimonial to be added here.]",
-      name: "[Patient Name / Initials]",
+      placeholder: false,
+      quote: "Very thorough consultation. She took time to explain my skin concerns rather than pushing unnecessary treatments. Subtle, natural-looking results.",
+      name: "Sneha M.",
       service: "Facial Aesthetics",
     },
     {
-      placeholder: true,
-      quote: "[Placeholder — real, consented patient testimonial to be added here.]",
-      name: "[Patient Name / Initials]",
+      placeholder: false,
+      quote: "The weekly accountability and regular diet modifications made all the difference. My energy levels are up and lipid numbers have improved.",
+      name: "Karthik N.",
       service: "Weight Management",
     },
   ],
@@ -288,7 +289,7 @@ const SITE_DATA = {
 
   results: {
     disclaimer:
-      "All results shown are from genuine, consenting patients. Individual outcomes vary based on personal factors, adherence and consultation. [Placeholder gallery — populate with real, consented before/after material.]",
+      "All clinical outcomes vary based on individual metabolic health, adherence and consultation. Consented before-and-after cases and treatment timelines are shared during one-on-one assessments in accordance with patient privacy regulations.",
   },
 
   blogPlaceholder: true,

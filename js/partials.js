@@ -53,12 +53,11 @@ function renderFooter() {
         </div>
         <div class="footer-bottom">
           <span>© <span id="year">${new Date().getFullYear()}</span> Dr. Amulya.S.M. All rights reserved.</span>
-          <!-- Hidden for now — remove this comment and the style below to bring it back. -->
-          <div style="display:none; gap:var(--space-4);">
+          <div class="footer-legal-links" style="display:flex; flex-wrap:wrap; gap:var(--space-4); font-size:var(--fs-small);">
             <a href="${base}faq/#disclaimer">Medical Disclaimer</a>
             <a href="${base}faq/#privacy">Privacy Policy</a>
             <a href="${base}faq/#terms">Terms</a>
-            <a href="${base}faq/#cancellation">Cancellation / Refund Policy</a>
+            <a href="${base}faq/#cancellation">Cancellation &amp; Rescheduling</a>
           </div>
         </div>
       </div>
