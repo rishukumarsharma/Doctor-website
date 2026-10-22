@@ -43,6 +43,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/bmi.css">
 </head>
 
 <body data-page="home">
@@ -56,15 +57,57 @@
   <main>
 
     <!-- HERO -->
-    <section class="hero hero-fullbleed" data-focal="right"
+    <section class="hero hero-fullbleed hero--bmi" data-focal="right"
       style="background-image:url('assets/photos/hero-patient-care.jpg');">
       <div class="container">
         <div class="hero-copy">
           <span class="eyebrow">Body Slimming · Facial Aesthetics</span>
           <h1>Personalized Care for Your Body, Skin &amp; Confidence.</h1>
-          <p class="lede">Dr. Amulya.S.M. builds every plan around a real conversation — your goals, your lifestyle and
-            your history — before recommending anything. No generic protocols, no guesswork.</p>
-          <div class="hero-actions">
+          <p class="lede">Every plan starts with a real conversation about your goals, lifestyle and history — no generic
+            protocols, no guesswork.</p>
+          <!-- BMI CALCULATOR -->
+          <div class="bmi-card" id="bmi-card" data-state="empty" role="group" aria-labelledby="bmi-title">
+            <div class="bmi-grid">
+              <!-- inputs -->
+              <div class="bmi-pane bmi-pane--in">
+                <h2 id="bmi-title">Check Your BMI</h2>
+                <p class="bmi-sub">Enter your height and weight.</p>
+                <div class="bmi-units" role="group" aria-label="Units">
+                  <button type="button" data-unit="metric" aria-pressed="true">cm / kg</button>
+                  <button type="button" data-unit="imperial" aria-pressed="false">ft / lb</button>
+                </div>
+                <div class="bmi-fields">
+                  <label class="bmi-field" data-for="metric"><span>Height</span>
+                    <div class="bmi-input"><input id="bmi-cm" type="number" inputmode="decimal" min="100" max="250" step="any" placeholder="165" autocomplete="off"><em>cm</em></div></label>
+                  <label class="bmi-field" data-for="metric"><span>Weight</span>
+                    <div class="bmi-input"><input id="bmi-kg" type="number" inputmode="decimal" min="20" max="300" step="any" placeholder="62" autocomplete="off"><em>kg</em></div></label>
+                  <div class="bmi-field bmi-field--full" data-for="imperial" hidden><span>Height</span>
+                    <div class="bmi-pair">
+                      <div class="bmi-input"><input id="bmi-ft" type="number" inputmode="numeric" min="3" max="8" aria-label="Height, feet" placeholder="5" autocomplete="off"><em>ft</em></div>
+                      <div class="bmi-input"><input id="bmi-in" type="number" inputmode="decimal" min="0" max="11.9" step="any" aria-label="Height, inches" placeholder="5" autocomplete="off"><em>in</em></div>
+                    </div></div>
+                  <label class="bmi-field bmi-field--full" data-for="imperial" hidden><span>Weight</span>
+                    <div class="bmi-input"><input id="bmi-lb" type="number" inputmode="decimal" min="44" max="660" step="any" placeholder="137" autocomplete="off"><em>lb</em></div></label>
+                </div>
+                <p class="bmi-error" id="bmi-error" role="alert"></p>
+              </div>
+
+              <!-- result: always present so the card never changes height -->
+              <div class="bmi-pane bmi-pane--out" id="bmi-result" aria-live="polite">
+                <div class="bmi-score"><span class="bmi-value" id="bmi-value">–</span><span class="bmi-cat" id="bmi-cat"></span></div>
+                <div class="bmi-scale" aria-hidden="true">
+                  <div class="bmi-bar"><span></span><span></span><span></span><span></span></div>
+                  <span class="bmi-marker" id="bmi-marker"></span>
+                  <div class="bmi-ticks"><span style="left:0">15</span><span style="left:17.5%">18.5</span><span style="left:40%">23</span><span style="left:50%">25</span><span style="left:100%">35</span></div>
+                </div>
+                <p class="bmi-msg" id="bmi-msg">Your BMI and category will appear here.</p>
+                <a class="btn btn-primary bmi-cta-btn" id="bmi-cta-link" href="./book-consultation/" data-track="click_book_consultation">Discuss with Dr. Amulya</a>
+              </div>
+            </div>
+            <p class="bmi-note">BMI is a screening guide only, not a diagnosis. Uses Indian/Asian cut-offs.</p>
+          </div>
+
+          <div class="hero-actions hero-actions--after">
             <a href="./book-consultation/" class="btn btn-primary" data-track="click_book_consultation">Book a
               Consultation</a>
             <a href="./services/" class="link-arrow">Explore Treatments
@@ -78,11 +121,10 @@
           <img src="assets/photos/hero-patient-care.jpg" alt="Dr. Amulya.S.M. patient care" loading="lazy">
         </div>
       </div>
-    </section>
 
-    <!-- TRUST BAR -->
-    <section class="trust-bar section-tight">
-      <div class="container">
+      <!-- TRUST BAR (pinned to the bottom of the hero) -->
+      <div class="hero-trust">
+        <div class="hero-trust-inner">
         <div class="trust-item">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 2 4 6v6c0 5 3.4 9 8 10 4.6-1 8-5 8-10V6l-8-4Z" />
@@ -109,6 +151,7 @@
             <path d="M8 2v4M16 2v4M3 10h18" />
           </svg>
           Online &amp; In-Clinic Consultations
+        </div>
         </div>
       </div>
     </section>
@@ -286,6 +329,7 @@
   <script src="js/navigation.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/bmi.js"></script>
 </body>
 
 </html>

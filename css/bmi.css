@@ -1,0 +1,137 @@
+/* ==========================================================================
+   BMI CALCULATOR — two-pane card in the home hero (index.html)
+   Inputs on the left, live result on the right. The result pane is always
+   rendered, so entering values never changes the card's height.
+   Spacing follows the site's 8px scale: 8 / 16 / 24 / 32.
+   ========================================================================== */
+
+.bmi-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-3);                 /* 16 — panes carry their own padding */
+  width: 100%;
+}
+.bmi-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-3); align-items: stretch; }
+.bmi-pane { min-width: 0; }
+
+/* ---- Left pane: inputs ---- */
+.bmi-pane--in { padding: var(--space-2) 0 var(--space-2) var(--space-2); display: flex; flex-direction: column; }
+.bmi-pane--in h2 { font-size: 1.25rem; line-height: 1.2; }
+.bmi-sub { margin: 4px 0 var(--space-2); font-size: var(--fs-small); color: var(--color-muted); line-height: 1.4; }
+
+.bmi-units { display: inline-flex; align-self: flex-start; margin-top: auto; padding-top: 0; background: var(--color-background-alt); border-radius: var(--radius-pill); padding: 3px; }
+.bmi-units button { font: inherit; font-size: var(--fs-caption); font-weight: 600; padding: .4rem .9rem; border: 0; border-radius: var(--radius-pill); background: transparent; color: var(--color-muted); cursor: pointer; transition: background .25s, color .25s; }
+.bmi-units button[aria-pressed="true"] { background: var(--color-primary); color: var(--color-text-inverse); }
+
+.bmi-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2); margin-top: var(--space-2); }
+.bmi-field { display: grid; gap: 8px; min-width: 0; align-content: start; }
+.bmi-field--full { grid-column: 1 / -1; }
+.bmi-field[hidden] { display: none; }
+.bmi-field > span { font-size: var(--fs-caption); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--color-muted); line-height: 1; }
+
+.bmi-input { position: relative; }
+.bmi-input input {
+  font: inherit; font-size: 1.05rem; font-weight: 500; width: 100%; height: 48px; padding: 0 2.5rem 0 var(--space-2);
+  border: 1px solid var(--color-border-strong); border-radius: var(--radius-md);
+  background: var(--color-background); color: var(--color-text);
+  transition: border-color .25s, box-shadow .25s, background .25s;
+  -moz-appearance: textfield;
+}
+.bmi-input input::-webkit-outer-spin-button, .bmi-input input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.bmi-input input::placeholder { color: #B5AEA4; font-weight: 400; }
+.bmi-input input:hover { border-color: var(--color-primary-light); }
+.bmi-input input:focus { outline: none; border-color: var(--color-primary); background: var(--color-surface); box-shadow: 0 0 0 3px rgba(63, 91, 78, .15); }
+.bmi-input input[aria-invalid="true"] { border-color: var(--color-error); }
+.bmi-input em { position: absolute; right: var(--space-2); top: 50%; transform: translateY(-50%); font-style: normal; font-size: var(--fs-small); font-weight: 500; color: var(--color-muted); pointer-events: none; }
+.bmi-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2); }
+
+.bmi-error { margin-top: var(--space-2); font-size: var(--fs-caption); color: var(--color-error); line-height: 1.4; }
+.bmi-error:empty { display: none; }
+
+/* ---- Right pane: result ---- */
+.bmi-pane--out { display: flex; flex-direction: column; background: var(--color-background-alt); border-radius: var(--radius-md); padding: var(--space-3); }
+.bmi-score { display: flex; align-items: center; gap: var(--space-2); min-height: 40px; }
+.bmi-value { font-family: var(--font-display); font-size: 2.25rem; line-height: 1; color: var(--color-primary-dark); transition: color .25s; }
+.bmi-cat { font-size: var(--fs-caption); font-weight: 600; padding: 5px 12px; border-radius: var(--radius-pill); background: #E3EDE6; color: var(--color-primary-dark); }
+.bmi-cat:empty { display: none; }
+.bmi-cat[data-cat="under"] { background: #EFE8D6; color: #6B5A2A; }
+.bmi-cat[data-cat="over"] { background: #F4E2D8; color: #7A3E22; }
+.bmi-cat[data-cat="obese"] { background: #F3DAD4; color: var(--color-error); }
+
+.bmi-scale { position: relative; margin-top: var(--space-2); }
+.bmi-bar { display: grid; grid-template-columns: 3.5fr 4.5fr 2fr 10fr; /* linear 15–35 scale */ height: 8px; border-radius: var(--radius-pill); overflow: hidden; gap: 2px; transition: opacity .3s; }
+.bmi-bar span:nth-child(1) { background: var(--color-secondary); }
+.bmi-bar span:nth-child(2) { background: var(--color-primary-light); }
+.bmi-bar span:nth-child(3) { background: var(--color-accent-light); }
+.bmi-bar span:nth-child(4) { background: var(--color-error); }
+.bmi-marker { position: absolute; top: -5px; left: 0; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; background: var(--color-surface); border: 3px solid var(--color-text); box-shadow: var(--shadow-sm); transition: left .5s var(--ease-premium), opacity .3s; }
+.bmi-ticks { position: relative; height: 1rem; margin-top: 8px; font-size: .7rem; color: var(--color-muted); }
+.bmi-ticks span { position: absolute; transform: translateX(-50%); }
+.bmi-ticks span:first-child { transform: none; }
+.bmi-ticks span:last-child { transform: translateX(-100%); }
+
+.bmi-msg { margin-top: var(--space-2); font-size: var(--fs-small); color: var(--color-muted); line-height: 1.5; flex: 1; }
+.bmi-cta-btn { margin-top: var(--space-2); width: 100%; justify-content: center; text-align: center; padding: .75rem 1rem; font-size: var(--fs-small); transition: opacity .3s; }
+.bmi-note { margin: var(--space-2) var(--space-2) 0; font-size: .7rem; color: var(--color-muted); line-height: 1.4; }
+
+/* empty / invalid: muted placeholder — same size, nothing moves */
+.bmi-card[data-state="empty"] .bmi-value { color: #B5AEA4; }
+.bmi-card[data-state="empty"] .bmi-bar { opacity: .35; }
+.bmi-card[data-state="empty"] .bmi-marker { opacity: 0; }
+.bmi-card[data-state="empty"] .bmi-cta-btn { opacity: 0; visibility: hidden; }
+.bmi-card[data-state="ready"] .bmi-cta-btn { opacity: 1; }
+
+/* ==========================================================================
+   HOME HERO LAYOUT — one shared column so headline, lede, card and buttons
+   all start and end on the same edges. Vertical rhythm: 16 → 16 → 32 → 32.
+   ========================================================================== */
+.hero--bmi {
+  display: flex; flex-direction: column; align-items: stretch;
+  min-height: calc(100vh - 88px); min-height: calc(100svh - 88px);   /* 88px = sticky offer bar */
+  padding-block: 0; background-position: right 20%;
+}
+/* the content block fills the space above the trust bar and centres in it */
+.hero--bmi > .container { align-self: stretch; flex: 1; display: flex; align-items: center; padding-block: clamp(5.5rem, 12vh, 7rem) var(--space-4); }
+
+/* trust bar: pinned to the hero's bottom edge, above the scrim so it stays crisp */
+.hero-trust { align-self: stretch; width: 100%; position: relative; z-index: 2; border-top: 1px solid var(--color-border); background: rgba(var(--color-background-rgb), .82); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.hero-trust-inner { width: var(--container-width); margin-inline: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2) var(--space-5); padding-block: var(--space-3); }
+.hero-trust .trust-item { white-space: nowrap; }
+/* keep the last item clear of the floating WhatsApp button */
+@media (min-width: 1025px) { .hero-trust-inner { padding-right: 72px; } }
+.hero--bmi .hero-copy { width: 100%; max-width: 580px; padding: 0; }
+.hero--bmi .hero-copy .eyebrow { display: flex; }
+.hero--bmi .hero-copy h1 { margin-top: var(--space-3); font-size: clamp(2rem, min(3vw, 4.8vh), 3.1rem); text-wrap: balance; }
+.hero--bmi .hero-copy p.lede { margin: var(--space-3) 0 var(--space-4); font-size: 1rem; max-width: none; }
+.hero--bmi .bmi-card { margin: 0; }
+.hero--bmi .hero-actions--after { margin-top: var(--space-4); gap: var(--space-4); }
+
+/* short laptop screens: trim, don't reflow */
+@media (max-height: 860px) and (min-width: 1025px) {
+  .hero--bmi .hero-copy p.lede { display: none; }
+  .hero--bmi .hero-copy h1 { margin-bottom: var(--space-4); }
+}
+@media (max-height: 760px) and (min-width: 1025px) {
+  .hero--bmi > .container { padding-block: 5.25rem var(--space-3); }
+  .hero--bmi .hero-copy p.lede { margin-bottom: var(--space-3); }
+    .hero--bmi .bmi-input input { height: 44px; }
+  .hero--bmi .hero-actions--after { margin-top: var(--space-3); }
+}
+
+@media (max-width: 1024px) {
+  .hero--bmi { display: block; min-height: 0; padding-block: clamp(6.5rem, 16vw, 8rem) 0; }
+  .hero--bmi > .container { display: block; padding-block: 0 var(--space-6); }
+  .hero-trust-inner { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2) var(--space-4); }
+  .hero-trust .trust-item { white-space: normal; }
+  .hero--bmi .bmi-card { max-width: 580px; }
+  .hero--bmi .hero-copy { max-width: 100%; }
+  .hero--bmi .hero-copy h1 { font-size: var(--fs-h1); }
+  .hero--bmi .hero-copy p.lede { font-size: var(--fs-body-lg); }
+}
+@media (max-width: 560px) {
+  .bmi-grid { grid-template-columns: minmax(0, 1fr); }
+  .bmi-pane--in { padding: var(--space-2); }
+}
+@media (prefers-reduced-motion: reduce) { .bmi-marker { transition: none; } }

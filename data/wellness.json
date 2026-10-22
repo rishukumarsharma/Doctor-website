@@ -1,0 +1,893 @@
+{
+ "items": [
+  {
+   "id": "brisk-walk",
+   "name": "Brisk Walk",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Movement",
+   "level": "Beginner",
+   "duration": 30,
+   "frequency": "Most days of the week",
+   "summary": "The simplest sustainable activity for weight management — no equipment, no gym.",
+   "steps": [
+    "Walk at a pace that raises your heart rate but still lets you hold a conversation.",
+    "Keep shoulders relaxed and stride natural.",
+    "Start with 15–20 minutes and build toward 30 or more."
+   ],
+   "tips": [
+    "Split it into three 10-minute walks if that fits your day better.",
+    "Wear supportive footwear."
+   ],
+   "setup": "None",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "post-meal-walk",
+   "name": "10-Minute Post-Meal Walk",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Movement",
+   "level": "Beginner",
+   "duration": 10,
+   "frequency": "After your largest meal",
+   "summary": "A short, gentle walk after eating supports digestion and daily activity.",
+   "steps": [
+    "Wait 5–10 minutes after finishing your meal.",
+    "Walk at an easy, comfortable pace for about 10 minutes.",
+    "Stay upright and breathe naturally."
+   ],
+   "tips": [
+    "Try it after dinner first — it also builds an evening routine."
+   ],
+   "setup": "None",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "march-in-place",
+   "name": "March in Place",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Movement",
+   "level": "Beginner",
+   "duration": 10,
+   "frequency": "Daily, 3 rounds of 1–2 min",
+   "summary": "Low-impact movement for busy days — do it at home or between work calls.",
+   "steps": [
+    "Stand tall and march, lifting knees to a comfortable height.",
+    "Swing your arms naturally.",
+    "Gradually increase speed or knee height as you warm up."
+   ],
+   "tips": [
+    "Great as a warm-up or a desk-break habit."
+   ],
+   "setup": "None",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "bodyweight-squat",
+   "name": "Bodyweight Squat",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Movement",
+   "level": "Beginner",
+   "duration": 10,
+   "frequency": "3 sets × 12 reps, 3 days a week",
+   "summary": "Builds lower-body strength, which supports metabolism and everyday movement.",
+   "steps": [
+    "Stand with feet shoulder-width apart.",
+    "Push hips back and lower as if sitting into a chair.",
+    "Press through your whole foot to stand, squeezing your glutes."
+   ],
+   "tips": [
+    "Keep knees tracking over toes.",
+    "Hold a chair for support if needed."
+   ],
+   "setup": "None",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "glute-bridge",
+   "name": "Glute Bridge",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Movement",
+   "level": "Beginner",
+   "duration": 8,
+   "frequency": "3 sets × 15 reps, 3 days a week",
+   "summary": "A gentle, back-friendly way to strengthen glutes and hamstrings.",
+   "steps": [
+    "Lie on your back, knees bent, feet flat hip-width apart.",
+    "Press through heels and lift hips until shoulders, hips and knees form a line.",
+    "Squeeze glutes, then lower slowly."
+   ],
+   "tips": [
+    "Avoid arching your lower back."
+   ],
+   "setup": "None",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "wall-pushup",
+   "name": "Wall Push-Up",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Movement",
+   "level": "Beginner",
+   "duration": 6,
+   "frequency": "3 sets × 10–12 reps",
+   "summary": "Tones arms, chest and shoulders with almost no strain.",
+   "steps": [
+    "Stand an arm's length from a wall, hands on it at shoulder height.",
+    "Bend elbows to bring your chest toward the wall.",
+    "Press back to start, body in a straight line."
+   ],
+   "tips": [
+    "Step feet further back to make it harder."
+   ],
+   "setup": "None",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "dead-bug",
+   "name": "Dead Bug",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Movement",
+   "level": "Beginner",
+   "duration": 8,
+   "frequency": "3 sets × 8 reps per side",
+   "summary": "A spine-safe core exercise that improves posture and stability.",
+   "steps": [
+    "Lie on your back, arms up, knees bent over hips.",
+    "Gently press your lower back into the floor.",
+    "Slowly extend opposite arm and leg, then switch."
+   ],
+   "tips": [
+    "Shorten the range if your back arches."
+   ],
+   "setup": "None",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "cat-cow",
+   "name": "Cat-Cow Stretch",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Movement",
+   "level": "Beginner",
+   "duration": 5,
+   "frequency": "Daily, 10 slow breaths",
+   "summary": "A mobility flow that eases stiffness and calms the mind.",
+   "steps": [
+    "Start on hands and knees.",
+    "Inhale: drop belly, lift chest and tailbone.",
+    "Exhale: round your spine toward the ceiling.",
+    "Move slowly with your breath."
+   ],
+   "tips": [
+    "Ideal first thing in the morning or after long sitting."
+   ],
+   "setup": "None",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "banded-walk",
+   "name": "Banded Lateral Walk",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Movement",
+   "level": "Intermediate",
+   "duration": 8,
+   "frequency": "3 sets × 10 steps each way",
+   "summary": "Activates hips and glutes for better lower-body tone and balance.",
+   "steps": [
+    "Place a loop band just above your knees.",
+    "Sit into a quarter squat.",
+    "Step sideways with tension on the band, then return."
+   ],
+   "tips": [
+    "Keep toes forward and avoid leaning."
+   ],
+   "setup": "Simple items",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "interval-walk",
+   "name": "Interval Walk",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Movement",
+   "level": "Intermediate",
+   "duration": 25,
+   "frequency": "2–3 times a week",
+   "summary": "Alternating brisk and easy pace for efficient calorie burn without high impact.",
+   "steps": [
+    "Warm up with 3–5 minutes of easy walking.",
+    "Walk briskly for 2 minutes, then easy for 2 minutes.",
+    "Repeat 5 times, then cool down for 3–5 minutes."
+   ],
+   "tips": [
+    "Brisk means breathing harder but still able to speak in short sentences."
+   ],
+   "setup": "None",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "goblet-squat",
+   "name": "Goblet Squat",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Movement",
+   "level": "Intermediate",
+   "duration": 15,
+   "frequency": "3 sets × 10 reps, 2–3 days a week",
+   "summary": "A loaded squat that builds lean muscle to support body composition goals.",
+   "steps": [
+    "Hold one dumbbell (or a filled water bottle) at chest height.",
+    "Sit down between your knees, chest up.",
+    "Drive up through your feet to stand."
+   ],
+   "tips": [
+    "Choose a weight that makes the last 2 reps challenging, not sloppy."
+   ],
+   "setup": "Simple items",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "plate-method",
+   "name": "The Plate Method",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Nutrition",
+   "level": "Beginner",
+   "duration": 5,
+   "frequency": "Every main meal",
+   "summary": "A simple way to portion meals without counting calories.",
+   "steps": [
+    "Fill half your plate with vegetables or salad.",
+    "Fill one quarter with protein (dal, eggs, paneer, fish, chicken).",
+    "Fill one quarter with whole-grain carbohydrates (roti, brown rice, millets).",
+    "Add a small portion of healthy fat and drink water with the meal."
+   ],
+   "tips": [
+    "Works for Indian thalis, bowls and takeaway meals alike.",
+    "Adjust portions with your doctor if you have a medical condition."
+   ],
+   "setup": "None",
+   "service": "Personalized Nutrition Planning",
+   "image": "assets/photos/plate-method.jpg"
+  },
+  {
+   "id": "protein-every-meal",
+   "name": "Protein at Every Meal",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Nutrition",
+   "level": "Beginner",
+   "duration": 5,
+   "frequency": "Each meal",
+   "summary": "Helps you feel fuller for longer and supports muscle while you slim down.",
+   "steps": [
+    "Choose a protein source for breakfast, lunch and dinner.",
+    "Examples: eggs, curd, paneer, sprouts, dal, tofu, lean meat or fish.",
+    "Add a protein-rich snack if you're often hungry between meals."
+   ],
+   "tips": [
+    "Spread protein through the day rather than one big portion."
+   ],
+   "setup": "None",
+   "service": "Personalized Nutrition Planning",
+   "note": "Needs vary with kidney or other health conditions — confirm your target with your doctor."
+  },
+  {
+   "id": "mindful-eating",
+   "name": "Mindful Eating",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Nutrition",
+   "level": "Beginner",
+   "duration": 20,
+   "frequency": "At least one meal a day",
+   "summary": "Slowing down helps you recognise fullness and avoid overeating.",
+   "steps": [
+    "Sit at a table, away from screens.",
+    "Take smaller bites and put your spoon down between them.",
+    "Aim to take about 20 minutes over the meal.",
+    "Pause halfway and ask: am I still hungry?"
+   ],
+   "tips": [
+    "Start with just one meal a day."
+   ],
+   "setup": "None",
+   "service": "Personalized Nutrition Planning"
+  },
+  {
+   "id": "hydration",
+   "name": "Daily Hydration Routine",
+   "goal": [
+    "Body Slimming",
+    "Facial Aesthetics"
+   ],
+   "type": "Nutrition",
+   "level": "Beginner",
+   "duration": 2,
+   "frequency": "All day",
+   "summary": "Steady hydration supports energy, appetite awareness and healthy-looking skin.",
+   "steps": [
+    "Start the day with a glass of water.",
+    "Keep a bottle within sight and sip regularly.",
+    "Have a glass before each main meal.",
+    "Check your urine colour — pale yellow is a good guide."
+   ],
+   "tips": [
+    "Herbal tea or infused water counts too."
+   ],
+   "setup": "None",
+   "service": "Personalized Nutrition Planning",
+   "note": "If you've been advised to limit fluids, follow your doctor's guidance."
+  },
+  {
+   "id": "smart-snacking",
+   "name": "Smart Snack Swaps",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Nutrition",
+   "level": "Beginner",
+   "duration": 5,
+   "frequency": "When you snack",
+   "summary": "Small swaps that cut empty calories without feeling restrictive.",
+   "steps": [
+    "Swap sugary drinks for water, buttermilk or lemon water.",
+    "Choose roasted chana, fruit, nuts or curd over biscuits and fried snacks.",
+    "Portion snacks into a bowl rather than eating from the packet."
+   ],
+   "tips": [
+    "Keep healthy options visible and treats out of sight."
+   ],
+   "setup": "None",
+   "service": "Personalized Nutrition Planning"
+  },
+  {
+   "id": "sleep-routine",
+   "name": "Wind-Down Sleep Routine",
+   "goal": [
+    "Body Slimming",
+    "Facial Aesthetics"
+   ],
+   "type": "Lifestyle",
+   "level": "Beginner",
+   "duration": 30,
+   "frequency": "Every night",
+   "summary": "Quality sleep supports appetite control, mood and skin recovery.",
+   "steps": [
+    "Pick a consistent bedtime and wake time.",
+    "Switch screens off 30–60 minutes before bed.",
+    "Dim the lights and keep the room cool and dark.",
+    "Try gentle stretching or slow breathing before sleep."
+   ],
+   "tips": [
+    "Avoid caffeine in the late afternoon and evening."
+   ],
+   "setup": "None",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "stress-breathing",
+   "name": "5-Minute Stress Reset",
+   "goal": [
+    "Body Slimming",
+    "Facial Aesthetics"
+   ],
+   "type": "Lifestyle",
+   "level": "Beginner",
+   "duration": 5,
+   "frequency": "Once or twice a day",
+   "summary": "Stress can drive cravings and affect skin — a short breathing break helps.",
+   "steps": [
+    "Sit comfortably and relax your shoulders.",
+    "Inhale through your nose for 4 counts.",
+    "Exhale slowly for 6 counts.",
+    "Repeat for 5 minutes."
+   ],
+   "tips": [
+    "Pair it with an existing habit, like after brushing your teeth."
+   ],
+   "setup": "None",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "weekly-meal-plan",
+   "name": "Weekly Meal Prep Plan",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Lifestyle",
+   "level": "Intermediate",
+   "duration": 45,
+   "frequency": "Once a week",
+   "summary": "Planning ahead makes healthy choices the easy choices on busy days.",
+   "steps": [
+    "Pick 3–4 dinners and 2–3 breakfasts for the week.",
+    "Write one grocery list and shop once.",
+    "Wash and chop vegetables, cook a grain, and prepare a protein.",
+    "Store in portioned containers for the next 3 days."
+   ],
+   "tips": [
+    "Keep one flexible meal for eating out."
+   ],
+   "setup": "None",
+   "service": "Personalized Nutrition Planning"
+  },
+  {
+   "id": "daily-steps",
+   "name": "Daily Step Goal",
+   "goal": [
+    "Body Slimming"
+   ],
+   "type": "Lifestyle",
+   "level": "Beginner",
+   "duration": 5,
+   "frequency": "Every day",
+   "summary": "Everyday movement adds up. Track steps to build momentum.",
+   "steps": [
+    "Check your current average steps for a week.",
+    "Add 1,000 steps to that number.",
+    "Use stairs, short walks and phone calls on foot to get there.",
+    "Increase the goal every 1–2 weeks."
+   ],
+   "tips": [
+    "Consistency beats big numbers on occasional days."
+   ],
+   "setup": "None",
+   "service": "Lifestyle Guidance"
+  },
+  {
+   "id": "am-skin-routine",
+   "name": "Morning Skin Routine",
+   "goal": [
+    "Facial Aesthetics"
+   ],
+   "type": "Skin & Face",
+   "level": "Beginner",
+   "duration": 5,
+   "frequency": "Every morning",
+   "summary": "A simple three-step routine is the base of healthy-looking skin.",
+   "steps": [
+    "Cleanse gently with a mild face wash and lukewarm water.",
+    "Apply a moisturiser suited to your skin type.",
+    "Finish with a broad-spectrum sunscreen, SPF 30 or higher."
+   ],
+   "tips": [
+    "Pat your face dry rather than rubbing.",
+    "Introduce one new product at a time."
+   ],
+   "setup": "Simple items",
+   "service": "Personalized Skin Care Guidance",
+   "note": "Persistent acne, pigmentation or sensitivity should be assessed — book a consultation rather than self-treating."
+  },
+  {
+   "id": "pm-skin-routine",
+   "name": "Evening Skin Routine",
+   "goal": [
+    "Facial Aesthetics"
+   ],
+   "type": "Skin & Face",
+   "level": "Beginner",
+   "duration": 7,
+   "frequency": "Every evening",
+   "summary": "Remove the day's sunscreen and impurities, then let skin repair overnight.",
+   "steps": [
+    "Remove makeup and sunscreen with a gentle cleanser.",
+    "Wash your face with lukewarm water and pat dry.",
+    "Apply a suitable night moisturiser.",
+    "Use any prescribed treatment as directed."
+   ],
+   "tips": [
+    "Never sleep with makeup on.",
+    "Change your pillowcase weekly."
+   ],
+   "setup": "Simple items",
+   "service": "Personalized Skin Care Guidance"
+  },
+  {
+   "id": "sun-protection",
+   "name": "Sun Protection Habit",
+   "goal": [
+    "Facial Aesthetics"
+   ],
+   "type": "Skin & Face",
+   "level": "Beginner",
+   "duration": 2,
+   "frequency": "Every day, even indoors",
+   "summary": "Sun exposure is a leading driver of visible skin ageing and pigmentation.",
+   "steps": [
+    "Apply sunscreen 15 minutes before going out — about two finger-lengths for face and neck.",
+    "Reapply every 2–3 hours outdoors.",
+    "Add a hat, sunglasses and shade during peak sun hours."
+   ],
+   "tips": [
+    "Don't forget ears, neck and the back of your hands."
+   ],
+   "setup": "Simple items",
+   "service": "Personalized Skin Care Guidance"
+  },
+  {
+   "id": "facial-massage",
+   "name": "Gentle Facial Massage",
+   "goal": [
+    "Facial Aesthetics"
+   ],
+   "type": "Skin & Face",
+   "level": "Beginner",
+   "duration": 5,
+   "frequency": "3–4 times a week",
+   "summary": "A relaxing massage that supports circulation and eases facial tension.",
+   "steps": [
+    "Wash hands and apply a light oil or moisturiser to clean skin.",
+    "With fingertips, make small upward and outward strokes from the chin to the ears.",
+    "Glide from the nose toward the temples, then from the centre of the forehead outward.",
+    "Finish by gently pressing along the jawline."
+   ],
+   "tips": [
+    "Use light pressure — never drag or tug the skin.",
+    "Skip if you have active acne, infection or irritation."
+   ],
+   "setup": "Simple items",
+   "service": "Facial Aesthetic Consultation"
+  },
+  {
+   "id": "face-yoga",
+   "name": "Face Relaxation Exercises",
+   "goal": [
+    "Facial Aesthetics"
+   ],
+   "type": "Skin & Face",
+   "level": "Beginner",
+   "duration": 5,
+   "frequency": "A few times a week",
+   "summary": "Gentle facial movements to release jaw, cheek and forehead tension.",
+   "steps": [
+    "Relax your jaw, lips slightly apart, and breathe slowly.",
+    "Smile gently with lips closed and hold for 5 seconds, then release.",
+    "Raise your eyebrows softly, hold for 3 seconds, then relax.",
+    "Massage your jaw hinge in small circles to release clenching."
+   ],
+   "tips": [
+    "These help relaxation; they aren't a substitute for professional contouring care.",
+    "Stop if you feel pain."
+   ],
+   "setup": "None",
+   "service": "Facial Aesthetic Consultation",
+   "note": "Interested in contouring or anti-ageing options? A consultation can outline what's suitable for you."
+  },
+  {
+   "id": "chin-tucks",
+   "name": "Neck Posture Chin Tucks",
+   "goal": [
+    "Facial Aesthetics",
+    "Body Slimming"
+   ],
+   "type": "Skin & Face",
+   "level": "Beginner",
+   "duration": 3,
+   "frequency": "2–3 times a day",
+   "summary": "Good posture supports the neck and jawline and reduces strain from screen time.",
+   "steps": [
+    "Sit or stand tall with shoulders relaxed.",
+    "Gently draw your chin straight back, as if making a double chin.",
+    "Hold for 5 seconds, then release.",
+    "Repeat 8–10 times."
+   ],
+   "tips": [
+    "Keep your eyes level — don't tilt up or down."
+   ],
+   "setup": "None",
+   "service": "Facial Aesthetic Consultation"
+  },
+  {
+   "id": "skin-sleep-hydration",
+   "name": "Skin-Friendly Habits",
+   "goal": [
+    "Facial Aesthetics"
+   ],
+   "type": "Skin & Face",
+   "level": "Beginner",
+   "duration": 5,
+   "frequency": "Daily",
+   "summary": "Everyday habits that show up on your skin: hydration, sleep, nutrition and touch.",
+   "steps": [
+    "Drink water through the day and eat fruit and vegetables rich in colour.",
+    "Aim for 7–8 hours of sleep.",
+    "Avoid picking or squeezing spots.",
+    "Keep phones and hands clean before touching your face."
+   ],
+   "tips": [
+    "Smoking and excess sugar can dull skin and speed up visible ageing."
+   ],
+   "setup": "None",
+   "service": "Personalized Skin Care Guidance"
+  }
+ ],
+ "quiz": {
+  "questions": [
+   {
+    "id": "goal",
+    "text": "What matters most to you right now?",
+    "options": [
+     {
+      "label": "Lose weight and feel lighter",
+      "scores": {
+       "nutrition": 2,
+       "lifestyle": 2
+      }
+     },
+     {
+      "label": "Tone up and improve body shape",
+      "scores": {
+       "active": 3,
+       "nutrition": 1
+      }
+     },
+     {
+      "label": "Healthier, clearer-looking skin",
+      "scores": {
+       "skin": 3
+      }
+     },
+     {
+      "label": "Facial contour or anti-ageing concerns",
+      "scores": {
+       "contour": 3,
+       "skin": 1
+      }
+     },
+     {
+      "label": "General wellness and a better routine",
+      "scores": {
+       "lifestyle": 3
+      }
+     }
+    ]
+   },
+   {
+    "id": "challenge",
+    "text": "What's your biggest challenge?",
+    "options": [
+     {
+      "label": "Knowing what and how much to eat",
+      "scores": {
+       "nutrition": 3
+      }
+     },
+     {
+      "label": "Finding time or staying consistent",
+      "scores": {
+       "lifestyle": 3
+      }
+     },
+     {
+      "label": "Low activity — I sit most of the day",
+      "scores": {
+       "active": 3,
+       "lifestyle": 1
+      }
+     },
+     {
+      "label": "Not sure which skincare products or habits suit me",
+      "scores": {
+       "skin": 3
+      }
+     },
+     {
+      "label": "Visible signs of ageing or facial concerns",
+      "scores": {
+       "contour": 3
+      }
+     }
+    ]
+   },
+   {
+    "id": "activity",
+    "text": "How active are you in a typical week?",
+    "options": [
+     {
+      "label": "Hardly active",
+      "scores": {
+       "lifestyle": 2,
+       "nutrition": 1
+      }
+     },
+     {
+      "label": "Walking or light activity a few days",
+      "scores": {
+       "lifestyle": 1,
+       "active": 1
+      }
+     },
+     {
+      "label": "Exercise 2–3 times a week",
+      "scores": {
+       "active": 2
+      }
+     },
+     {
+      "label": "Exercise 4+ times a week",
+      "scores": {
+       "active": 2,
+       "nutrition": 1
+      }
+     }
+    ]
+   },
+   {
+    "id": "food",
+    "text": "How would you describe your eating habits?",
+    "options": [
+     {
+      "label": "Irregular meals, skip breakfast often",
+      "scores": {
+       "nutrition": 3
+      }
+     },
+     {
+      "label": "Eat out or order in frequently",
+      "scores": {
+       "nutrition": 3
+      }
+     },
+     {
+      "label": "Mostly home-cooked but large portions",
+      "scores": {
+       "nutrition": 2,
+       "lifestyle": 1
+      }
+     },
+     {
+      "label": "Fairly balanced already",
+      "scores": {
+       "active": 1,
+       "skin": 1,
+       "contour": 1
+      }
+     }
+    ]
+   },
+   {
+    "id": "time",
+    "text": "How much time can you give daily?",
+    "options": [
+     {
+      "label": "Under 10 minutes",
+      "scores": {
+       "lifestyle": 2,
+       "skin": 1
+      }
+     },
+     {
+      "label": "10–20 minutes",
+      "scores": {
+       "lifestyle": 1,
+       "skin": 1,
+       "nutrition": 1
+      }
+     },
+     {
+      "label": "20–40 minutes",
+      "scores": {
+       "active": 2,
+       "nutrition": 1
+      }
+     },
+     {
+      "label": "40 minutes or more",
+      "scores": {
+       "active": 3
+      }
+     }
+    ]
+   }
+  ],
+  "results": {
+   "lifestyle": {
+    "title": "Lifestyle Reset",
+    "blurb": "Your biggest win is building small, repeatable habits — movement, sleep and stress — before anything complicated. A guided plan helps these stick.",
+    "plan": [
+     "Aim for a daily 20–30 minute walk",
+     "Set a consistent sleep and wake time",
+     "Add one 5-minute stress reset daily",
+     "Review progress after two weeks"
+    ],
+    "filters": {
+     "goal": "Body Slimming",
+     "type": "Lifestyle"
+    },
+    "service": "Lifestyle Guidance",
+    "serviceHref": "body-slimming/",
+    "cta": "Book Lifestyle Guidance"
+   },
+   "nutrition": {
+    "title": "Nutrition-First Slimming",
+    "blurb": "Food choices will make the biggest difference for you. A diet plan that suits your routine and preferences works better than strict rules.",
+    "plan": [
+     "Use the plate method for main meals",
+     "Include protein at every meal",
+     "Swap sugary drinks and snacks for simpler options",
+     "Get a personalised diet plan from your doctor"
+    ],
+    "filters": {
+     "goal": "Body Slimming",
+     "type": "Nutrition"
+    },
+    "service": "Personalized Nutrition Planning",
+    "serviceHref": "body-slimming/",
+    "cta": "Book Nutrition Planning"
+   },
+   "active": {
+    "title": "Active Body Toning",
+    "blurb": "You're ready for more structured movement. Pair light strength work with good nutrition and regular progress checks for steady results.",
+    "plan": [
+     "3 short strength sessions a week at home",
+     "Daily walking or interval walks",
+     "Protein at every meal to support muscle",
+     "Track measurements and review every few weeks"
+    ],
+    "filters": {
+     "goal": "Body Slimming",
+     "type": "Movement"
+    },
+    "service": "Weight Management Consultation",
+    "serviceHref": "body-slimming/",
+    "cta": "Book a Weight Management Consultation"
+   },
+   "skin": {
+    "title": "Glow & Skin Care Routine",
+    "blurb": "A simple, consistent routine plus the right everyday habits is where healthy-looking skin starts. A doctor can tailor products to your skin type and concerns.",
+    "plan": [
+     "Cleanse, moisturise and use sunscreen daily",
+     "Introduce one new product at a time",
+     "Prioritise hydration and 7–8 hours of sleep",
+     "Get a routine built for your skin type"
+    ],
+    "filters": {
+     "goal": "Facial Aesthetics",
+     "type": "Skin & Face"
+    },
+    "service": "Personalized Skin Care Guidance",
+    "serviceHref": "facial-aesthetics/",
+    "cta": "Book Skin Care Guidance"
+   },
+   "contour": {
+    "title": "Facial Contour & Anti-Ageing Focus",
+    "blurb": "Your goals go beyond a routine. A proper assessment of your skin and face lets the doctor suggest what — if anything — is genuinely suitable for you.",
+    "plan": [
+     "Protect skin with daily sunscreen",
+     "Support skin with hydration and sleep",
+     "Try gentle face relaxation and posture habits",
+     "Discuss contouring and anti-ageing options in a consultation"
+    ],
+    "filters": {
+     "goal": "Facial Aesthetics"
+    },
+    "service": "Facial Aesthetic Consultation",
+    "serviceHref": "facial-aesthetics/",
+    "cta": "Book a Facial Aesthetic Consultation"
+   }
+  }
+ }
+}

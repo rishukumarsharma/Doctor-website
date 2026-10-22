@@ -17,7 +17,7 @@ const SITE_DATA = {
   contact: {
     phone: "+91 82771 99017",
     whatsapp: "918277199017", // digits only, no + or spaces — used to build wa.me links
-    email: "dramulyasm@gmail.com",
+    email: "nourishandtone28@gmail.com",
     timings: "Monday – Sunday, 07:00 AM – 10:00 PM",
     openingHoursSchema: "Mo-Su 07:00-22:00", // schema.org / ISO format of `timings` above — keep in sync
     sheetWebhookUrl: "https://script.google.com/macros/s/AKfycbxLb9gQkTSILpg7eSlB_Vpi_l6hIDLEEiWvmWvrMDowWD5XmNfrw_CKcQW95CsZ-YNLeQ/exec",
@@ -52,6 +52,7 @@ const SITE_DATA = {
     { label: "About", href: "about/" },
     { label: "Services", href: "services/" },
     { label: "Pricing", href: "pricing/" },
+    { label: "Wellness", href: "wellness/" },
   ],
 
   specializations: [
