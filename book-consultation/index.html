@@ -3,7 +3,9 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="google-site-verification" content="iHj-EjX1HNEtonT-n91wbsYcX30wEUCbv8ZmRRQ0NzA" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; frame-src https://*.googletagmanager.com https://*.doubleclick.net https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="google-site-verification" content="iHj-EjX1HNEtonT-n91wbsYcX30wEUCbv8ZmRRQ0NzA" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18505921013"></script>
   <script>
@@ -108,6 +110,7 @@
       <div class="booking-step" data-step="4">
         <h3>Your Information</h3>
         <form data-details-form style="margin-top:var(--space-4)" novalidate>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <div class="form-row">
             <div class="form-group">
               <label>Full Name</label>
@@ -144,8 +147,7 @@
             Your booking is confirmed as a request — our team will follow up by phone or WhatsApp shortly to
             finalize your appointment.
           </p>
-          <button class="btn btn-dark btn-block" style="margin-top:var(--space-4)" data-pay-action
-            data-track="confirm_booking">Confirm Booking</button>
+          <button class="btn btn-dark btn-block" style="margin-top:var(--space-4)" data-pay-action>Confirm Booking</button>
           <p data-payment-status style="font-size:var(--fs-caption); margin-top:var(--space-3)"></p>
         </div>
 

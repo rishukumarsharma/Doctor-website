@@ -8,18 +8,8 @@
   if (!DATA) return;
 
   /* ---------------- Analytics & Google Ads Conversion Tracking ---------------- */
-  // Initialize Google Ads tag dynamically if configured in SITE_DATA
-  if (
-    DATA.googleAds &&
-    DATA.googleAds.conversionId &&
-    DATA.googleAds.conversionId !== "AW-XXXXXXXXX" &&
-    !DATA.googleAds.conversionId.includes("X")
-  ) {
-    window.dataLayer = window.dataLayer || [];
-    if (typeof window.gtag === "function") {
-      window.gtag("config", DATA.googleAds.conversionId);
-    }
-  }
+  // The gtag.js loader and config calls live in each page's <head>.
+  const isDev = location.hostname === "localhost" || location.hostname === "127.0.0.1";
 
   function sendGoogleAdsConversion(conversionLabel, extraPayload) {
     if (!conversionLabel || typeof window.gtag !== "function") return;
@@ -34,7 +24,7 @@
 
     // Skip if placeholder
     if (sendTo.includes("AW-XXXXXXXXX") || sendTo.includes("CONVERSION_LABEL") || sendTo.includes("XXXXXXXXX")) {
-      if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      if (isDev) {
         console.log("[google-ads] Skipping conversion due to placeholder ID/label:", sendTo);
       }
       return;
@@ -48,7 +38,7 @@
 
     window.gtag("event", "conversion", convData);
 
-    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+    if (isDev) {
       console.log("[google-ads] Conversion sent:", convData);
     }
   }
@@ -106,12 +96,40 @@
         break;
     }
 
-    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+    if (isDev) {
       console.log("[analytics]", eventName, payload || {});
     }
   }
   window.trackEvent = track;
   window.sendGoogleAdsConversion = sendGoogleAdsConversion;
+
+
+  /* ---------------- Google Sheet webhook (shared by booking + contact forms) ---------------- */
+  // Readable IST timestamp for the sheet, e.g. "29 Sep 2026, 12:43 PM".
+  function formatTimestamp(date) {
+    return new Intl.DateTimeFormat("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "Asia/Kolkata",
+    })
+      .format(date)
+      .replace(" at ", ", ");
+  }
+
+  // GET rather than POST: Apps Script relays POST bodies through a second
+  // domain, which fails in browsers that block cross-site cookies.
+  // Resolves on send, rejects on network failure (the no-cors response is opaque).
+  function submitToSheet(data) {
+    const url = DATA.contact && DATA.contact.sheetWebhookUrl;
+    if (!url) return Promise.reject(new Error("Sheet webhook URL not configured"));
+    return fetch(url + "?" + new URLSearchParams(data).toString(), { mode: "no-cors" });
+  }
+  window.formatTimestamp = formatTimestamp;
+  window.submitToSheet = submitToSheet;
 
   /* ---------------- WhatsApp link helper ---------------- */
   function buildWhatsAppLink(prefill) {
@@ -172,7 +190,10 @@
 
     const DURATION_SECONDS = 5 * 60;
     const STORAGE_KEY = "offerBarExpiresAt";
-    let expiresAt = Number(sessionStorage.getItem(STORAGE_KEY));
+    let expiresAt = 0;
+    try {
+      expiresAt = Number(sessionStorage.getItem(STORAGE_KEY));
+    } catch (e) { }
     if (!expiresAt || expiresAt < Date.now()) {
       expiresAt = Date.now() + DURATION_SECONDS * 1000;
       try {

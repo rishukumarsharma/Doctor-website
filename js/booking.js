@@ -10,42 +10,8 @@
   const root = document.querySelector("[data-booking-app]");
   if (!DATA || !root) return;
 
-  // Google Apps Script Web App URL that appends each booking as a row in a
-  // Google Sheet. See README-booking-sheet.md for setup steps. Leave the
-  const BOOKING_SHEET_WEBHOOK_URL =
-    DATA.contact?.sheetWebhookUrl ||
-    DATA.sheetWebhookUrl ||
-    "https://script.google.com/macros/s/AKfycbxLb9gQkTSILpg7eSlB_Vpi_l6hIDLEEiWvmWvrMDowWD5XmNfrw_CKcQW95CsZ-YNLeQ/exec";
-
-  // Readable "submitted at" timestamp for the sheet, e.g. "29 Sep 2026, 12:43 PM"
-  // — a raw toISOString() (2026-09-29T07:13:20.402Z) isn't something clinic
-  // staff should have to parse. Always in IST, since that's the clinic's timezone.
-  function formatTimestamp(date) {
-    const formatted = new Intl.DateTimeFormat("en-IN", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-      timeZone: "Asia/Kolkata",
-    }).format(date);
-    return formatted.replace(" at ", ", ");
-  }
-
-  function submitBookingToSheet(data) {
-    if (!BOOKING_SHEET_WEBHOOK_URL || BOOKING_SHEET_WEBHOOK_URL.indexOf("PASTE_YOUR") === 0) {
-      console.warn("Booking sheet webhook URL not configured — booking was not recorded.");
-      return;
-    }
-    // Sent as GET (data in the query string) rather than POST — Apps Script
-    // Web Apps relay a POST body through a second domain, and that hop can
-    // fail under browsers that block cross-site cookies. GET avoids it.
-    const url = BOOKING_SHEET_WEBHOOK_URL + "?" + new URLSearchParams(data).toString();
-    fetch(url, { mode: "no-cors" }).catch((err) => {
-      console.error("Failed to record booking to Google Sheet", err);
-    });
-  }
+  const escapeHtml = (v) =>
+    String(v).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
   const state = {
     step: 1,
@@ -143,6 +109,8 @@
         return;
       }
       state.date = input.value;
+      state.time = null;
+      renderTimeOptions();
       window.trackEvent?.("select_date", { date: input.value });
       updateNextEnabled();
     });
@@ -155,10 +123,18 @@
     const slots = ["10:00 AM", "11:00 AM", "12:30 PM", "2:00 PM", "3:30 PM", "5:00 PM", "6:00 PM", "6:45 PM", "9:00 PM", "10:00 PM"];
     // Deterministic placeholder unavailability so the "disabled slot" state is visible.
     const unavailable = new Set(["12:30 PM", "6:45 PM"]);
+    // For today's date, slots that have already started can't be booked.
+    const now = new Date();
+    const isToday = state.date === `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    const isPast = (t) => {
+      if (!isToday) return false;
+      const [, h, m, ap] = t.match(/(\d+):(\d+) (AM|PM)/);
+      return ((Number(h) % 12) + (ap === "PM" ? 12 : 0)) * 60 + Number(m) <= now.getHours() * 60 + now.getMinutes();
+    };
     container.innerHTML = `<div class="time-slot-grid">${slots
       .map(
         (t) =>
-          `<div class="time-slot${unavailable.has(t) ? " is-disabled" : ""}" data-time="${t}">${t}</div>`
+          `<div class="time-slot${unavailable.has(t) || isPast(t) ? " is-disabled" : ""}" data-time="${t}">${t}</div>`
       )
       .join("")}</div>`;
     selectOne(container, ".time-slot:not(.is-disabled)", (slot) => {
@@ -204,16 +180,19 @@
 
   function renderSummary() {
     const container = root.querySelector("[data-step-summary]");
-    container.innerHTML = `
-      ${state.treatment ? `<div class="summary-row"><span>Treatment</span><strong>${state.treatment.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c])}</strong></div>` : ""}
-      ${state.goal ? `<div class="summary-row"><span>Consultation Goal</span><strong>${state.goal.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c])}</strong></div>` : ""}
-      <div class="summary-row"><span>Service</span><strong>${state.service || "—"}</strong></div>
-      <div class="summary-row"><span>Consultation Type</span><strong>${state.type || "—"}</strong></div>
-      <div class="summary-row"><span>Date</span><strong>${state.date || "—"}</strong></div>
-      <div class="summary-row"><span>Time</span><strong>${state.time || "—"}</strong></div>
-      <div class="summary-row"><span>Name</span><strong>${state.name}</strong></div>
-      <div class="summary-row"><span>Phone</span><strong>${state.phone}</strong></div>
-    `;
+    const row = (label, value) => `<div class="summary-row"><span>${label}</span><strong>${escapeHtml(value)}</strong></div>`;
+    container.innerHTML = [
+      state.treatment && row("Treatment", state.treatment),
+      state.goal && row("Consultation Goal", state.goal),
+      row("Service", state.service || "—"),
+      row("Consultation Type", state.type || "—"),
+      row("Date", state.date || "—"),
+      row("Time", state.time || "—"),
+      row("Name", state.name),
+      row("Phone", state.phone),
+    ]
+      .filter(Boolean)
+      .join("");
   }
 
   function updateNextEnabled() {
@@ -333,22 +312,36 @@
     const confirmBtn = root.querySelector("[data-pay-action]");
     const statusEl = root.querySelector("[data-payment-status]");
     confirmBtn.addEventListener("click", () => {
+      // Guard against double-clicks: each click would otherwise add a sheet row and a Ads conversion.
+      if (confirmBtn.disabled) return;
+      confirmBtn.disabled = true;
+
+      // Hidden honeypot field — real users never fill it; bots usually do.
+      const trap = root.querySelector('[name="website"]');
+      if (trap && trap.value) return;
+
       window.trackEvent?.("confirm_booking", { service: state.service });
       statusEl.textContent = "Booking request sent — our team will be in touch shortly.";
       statusEl.style.color = "var(--color-muted)";
-      submitBookingToSheet({
-        timestamp: formatTimestamp(new Date()),
-        service: state.service || "",
-        type: state.type || "",
-        date: state.date || "",
-        time: state.time || "",
-        name: state.name || "",
-        phone: state.phone || "",
-        email: state.email || "",
-        notes: state.notes || "",
-        treatment: state.treatment || "",
-        goal: state.goal || "",
-      });
+      window
+        .submitToSheet({
+          timestamp: window.formatTimestamp(new Date()),
+          service: state.service || "",
+          type: state.type || "",
+          date: state.date || "",
+          time: state.time || "",
+          name: state.name || "",
+          phone: state.phone || "",
+          email: state.email || "",
+          notes: state.notes || "",
+          treatment: state.treatment || "",
+          goal: state.goal || "",
+        })
+        .catch(() => {
+          statusEl.textContent = "We couldn't send your request. Please call or WhatsApp us to book.";
+          statusEl.style.color = "var(--color-error, #b3261e)";
+          confirmBtn.disabled = false;
+        });
       fireConfetti();
       showConfirmPopup();
       setTimeout(() => goToStep(6), 900);

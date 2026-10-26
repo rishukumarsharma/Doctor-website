@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-  <meta name="google-site-verification" content="iHj-EjX1HNEtonT-n91wbsYcX30wEUCbv8ZmRRQ0NzA" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; frame-src https://*.googletagmanager.com https://*.doubleclick.net https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="google-site-verification" content="iHj-EjX1HNEtonT-n91wbsYcX30wEUCbv8ZmRRQ0NzA" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18505921013"></script>
   <script>
@@ -99,6 +101,7 @@
       <div class="reveal">
         <h2 style="font-size:var(--fs-h3)">Send a Message</h2>
         <form id="contact-form" style="margin-top:var(--space-4)" novalidate>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <div class="form-row">
             <div class="form-group">
               <label for="c-name">Full Name</label>
@@ -168,25 +171,12 @@
       submitBtn.textContent = "Sending...";
     }
 
-    // Google Sheet webhook
-    const webhookUrl =
-      (window.SITE_DATA && window.SITE_DATA.contact && window.SITE_DATA.contact.sheetWebhookUrl) ||
-      (window.SITE_DATA && window.SITE_DATA.sheetWebhookUrl) ||
-      "https://script.google.com/macros/s/AKfycbxLb9gQkTSILpg7eSlB_Vpi_l6hIDLEEiWvmWvrMDowWD5XmNfrw_CKcQW95CsZ-YNLeQ/exec";
+    // Hidden honeypot — real users never fill it; bots usually do.
+    if (form.website && form.website.value) return;
 
     const now = new Date();
-    const timestamp = new Intl.DateTimeFormat("en-IN", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-      timeZone: "Asia/Kolkata",
-    }).format(now).replace(" at ", ", ");
-
     const payload = {
-      timestamp: timestamp,
+      timestamp: window.formatTimestamp(now),
       service: "Contact Inquiry",
       treatment: "Website Message",
       goal: "Contact Form",
@@ -199,19 +189,22 @@
       notes: message,
     };
 
-    const url = webhookUrl + "?" + new URLSearchParams(payload).toString();
-    fetch(url, { mode: "no-cors" })
-      .catch((err) => {
-        console.error("Failed to record contact inquiry to Google Sheet", err);
+    window
+      .submitToSheet(payload)
+      .then(() => {
+        // Never send name/phone to analytics — that's patient PII.
+        window.trackEvent?.("contact_form_submitted");
+        if (successEl) successEl.style.display = "block";
+        form.reset();
+      })
+      .catch(() => {
+        alert("We couldn't send your message. Please call or WhatsApp us instead.");
       })
       .finally(() => {
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.textContent = "Send Message";
         }
-        window.trackEvent?.("contact_form_submitted", { name, phone });
-        if (successEl) successEl.style.display = "block";
-        form.reset();
       });
   });
 </script>

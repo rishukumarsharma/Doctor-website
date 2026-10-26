@@ -2,7 +2,6 @@
    CENTRAL SITE DATA
    Single source of truth for doctor profile, services, pricing, contact
    details and content. Edit values here — never hardcode them in HTML.
-   Replace every [Placeholder] before launch.
    ========================================================================== */
 
 const SITE_DATA = {
@@ -293,8 +292,6 @@ const SITE_DATA = {
     disclaimer:
       "All clinical outcomes vary based on individual metabolic health, adherence and consultation. Consented before-and-after cases and treatment timelines are shared during one-on-one assessments in accordance with patient privacy regulations.",
   },
-
-  blogPlaceholder: true,
 
   policies: {
     disclaimerShort:

@@ -3,7 +3,9 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="google-site-verification" content="iHj-EjX1HNEtonT-n91wbsYcX30wEUCbv8ZmRRQ0NzA" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; frame-src https://*.googletagmanager.com https://*.doubleclick.net https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="google-site-verification" content="iHj-EjX1HNEtonT-n91wbsYcX30wEUCbv8ZmRRQ0NzA" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18505921013"></script>
   <script>
@@ -35,6 +37,7 @@
   <meta name="twitter:description"
     content="Personalized body slimming, weight management and facial aesthetics consultations with Dr. Amulya.S.M. Book an online or in-clinic consultation today.">
   <meta name="twitter:image" content="https://nourishandtone.com/assets/social/og-image.jpg">
+  <link rel="preload" as="image" href="assets/photos/hero-patient-care.jpg" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -165,7 +168,7 @@
             style="border-radius: var(--radius-lg); overflow:hidden; background:var(--color-secondary); box-shadow: var(--shadow-md);">
             <img src="assets/photos/plate-method.jpg"
               alt="The Plate Method — a balanced plate with 50% vegetables and whole grains, 25% protein, complex carbohydrates and healthy fats"
-              loading="lazy" style="width:100%;height:auto;display:block;">
+              width="800" height="1005" loading="lazy" decoding="async" style="width:100%;height:auto;display:block;">
           </div>
         </div>
         <div class="reveal">
