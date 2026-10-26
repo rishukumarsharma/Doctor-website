@@ -52,7 +52,8 @@ const SITE_DATA = {
     { label: "About", href: "about/" },
     { label: "Services", href: "services/" },
     { label: "Pricing", href: "pricing/" },
-    { label: "Wellness", href: "wellness/" },
+    // Wellness hidden for now — re-enable to show in nav/footer
+    // { label: "Wellness", href: "wellness/" },
   ],
 
   specializations: [

@@ -49,6 +49,8 @@ function renderFooter() {
             <li><a href="#" data-bind-href="contact.telLink" data-bind="contact.phone"></a></li>
             <li><a href="#" data-bind-href="contact.mailLink" data-bind="contact.email"></a></li>
             <li data-bind="contact.timings"></li>
+            <li><a href="https://www.instagram.com/nourishand_tone/" target="_blank" rel="noopener" aria-label="Instagram" style="display:inline-flex; align-items:center; gap:0.5rem;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a></li>
+            <li><a href="https://www.facebook.com/people/Nourishandtone-Nourishandtone/pfbid0TXY39F8ziTNoXzQcJfU3oSUTf6sqh8DSZnLoY71QDe2tgUaVwjquBmnXGHzeCdPDl/" target="_blank" rel="noopener" aria-label="Facebook" style="display:inline-flex; align-items:center; gap:0.5rem;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</a></li>
           </ul></div>
         </div>
         <div class="footer-bottom">

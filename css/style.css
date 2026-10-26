@@ -303,6 +303,49 @@ section {
   color: var(--color-text-inverse);
 }
 
+.bg-dark .btn-secondary:hover {
+  background: rgba(248, 245, 238, 0.12);
+  border-color: var(--color-text-inverse);
+  color: var(--color-text-inverse);
+}
+
+.cta-social {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid rgba(248, 245, 238, 0.15);
+}
+
+.cta-social-label {
+  font-size: var(--fs-small);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(248, 245, 238, 0.65);
+  margin-right: var(--space-2);
+}
+
+.cta-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-pill);
+  background: rgba(248, 245, 238, 0.08);
+  transition: background var(--transition-base), transform var(--transition-base);
+}
+
+.cta-social-link:hover {
+  background: rgba(248, 245, 238, 0.2);
+  transform: translateY(-2px);
+}
+
 .btn-dark {
   background: var(--color-primary);
   color: var(--color-text-inverse);
