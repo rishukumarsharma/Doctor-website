@@ -19,7 +19,7 @@ const SITE_DATA = {
     email: "nourishandtone28@gmail.com",
     timings: "Monday – Sunday, 07:00 AM – 10:00 PM",
     openingHoursSchema: "Mo-Su 07:00-22:00", // schema.org / ISO format of `timings` above — keep in sync
-    sheetWebhookUrl: "https://script.google.com/macros/s/AKfycbybmv_bGCePDvx5eP54Ff692bD2SPVaKvtCYh1MVyR92VWmfFjBm6RbgjnrOHYFWkw3/exec",
+    sheetWebhookUrl: "https://script.google.com/macros/s/AKfycbxUsJtnnnd3Ke_AhWPK075qTaLXx_bUMcHnsA3iEZiUrZn5CsSViSSDr2Y21k3F1Iaz/exec",
   },
 
   /* ---------------- Google Ads & Conversion Tracking Configuration ----------------

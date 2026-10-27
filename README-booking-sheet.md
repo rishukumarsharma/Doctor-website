@@ -38,6 +38,8 @@ more reliable for this use case.
 3. Save the project (any name).
 
 ```js
+var NOTIFY_EMAIL = "nourishandtone28@gmail.com";
+
 function doGet(e) {
   return recordBooking(e);
 }
@@ -58,7 +60,7 @@ function recordBooking(e) {
   }
 
   var p = e.parameter;
-  sheet.appendRow([
+  var row = [
     p.timestamp || new Date().toISOString(),
     p.service || "",
     p.treatment || "",
@@ -70,18 +72,83 @@ function recordBooking(e) {
     p.phone || "",
     p.email || "",
     p.notes || "",
-  ]);
+  ];
+  sheet.appendRow(row);
+  sendBookingNotification(ss, row);
 
   return ContentService
     .createTextOutput(JSON.stringify({ result: "success" }))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+function sendBookingNotification(ss, row) {
+  var fields = [
+    "Timestamp", "Service", "Treatment", "Goal", "Type", "Date", "Time",
+    "Name", "Phone", "Email", "Notes",
+  ];
+  var lines = [];
+  for (var i = 0; i < fields.length; i++) {
+    lines.push(fields[i] + ": " + (row[i] || "-"));
+  }
+
+  var attachments = [];
+  try {
+    var url = "https://docs.google.com/spreadsheets/d/" + ss.getId() + "/export?format=xlsx";
+    var response = UrlFetchApp.fetch(url, {
+      headers: { Authorization: "Bearer " + ScriptApp.getOAuthToken() },
+    });
+    attachments.push(response.getBlob().setName("Consultation Bookings.xlsx"));
+  } catch (err) {
+    // If the export fails (e.g. a permissions hiccup), still send the
+    // notification without the attachment rather than losing the booking.
+  }
+
+  MailApp.sendEmail({
+    to: NOTIFY_EMAIL,
+    subject: "New booking: " + (row[7] || "Someone") + " - " + (row[5] || ""),
+    body: "A new booking/consultation request was submitted:\n\n" + lines.join("\n"),
+    attachments: attachments,
+  });
 }
 ```
 
 This version doesn't depend on your existing tab's name — it creates a
 `Bookings` tab (with headers) the first time it runs if one doesn't already
 exist, and reuses it afterward. It also handles both GET and POST, in case
-you want to test either way.
+you want to test either way. On every new booking it now also emails
+`nourishandtone28@gmail.com` the booking details **and** the current full
+sheet as an `.xlsx` attachment.
+
+> **Enabling the email/attachment permissions:** the first time you run or
+> redeploy this version, Apps Script will ask you to re-authorize because it
+> now sends email and exports the sheet. If authorization fails silently or
+> the attachment never arrives, open **Project Settings (gear icon) > Show
+> "appsscript.json" manifest file in editor**, then edit `appsscript.json` to
+> include:
+>
+> ```json
+> {
+>   "timeZone": "Asia/Kolkata",
+>   "dependencies": {},
+>   "exceptionLogging": "STACKDRIVER",
+>   "runtimeVersion": "V8",
+>   "oauthScopes": [
+>     "https://www.googleapis.com/auth/spreadsheets",
+>     "https://www.googleapis.com/auth/script.external_request",
+>     "https://www.googleapis.com/auth/drive.readonly",
+>     "https://www.googleapis.com/auth/script.send_mail"
+>   ]
+> }
+> ```
+>
+> Save, then re-run any function once from the editor (e.g. select
+> `doGet` and click **Run**) to trigger the authorization prompt, approve it,
+> and create a new deployment (step 3 below) so the live URL picks up the
+> change.
+>
+> **Gmail sending limit:** `MailApp.sendEmail` is capped at 100 emails/day on
+> a free Gmail account (1,500/day on Google Workspace) — plenty for a
+> clinic's booking volume, but worth knowing.
 
 > **Already have a sheet running?** The site now also sends a `goal` field
 > (the "Consultation Goal" chosen on the home page). Your already-deployed
