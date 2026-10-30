@@ -56,6 +56,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap"></noscript>
+  <!-- Fetch all scripts in parallel instead of one blocking round trip at a time -->
+  <link rel="preload" as="script" href="../js/data.js">
+  <link rel="preload" as="script" href="../js/partials.js">
+  <link rel="preload" as="script" href="../js/schema.js">
+  <link rel="preload" as="script" href="../js/navigation.js">
+  <link rel="preload" as="script" href="../js/animations.js">
+  <link rel="preload" as="script" href="../js/main.js">
+  <link rel="preload" as="script" href="../js/booking.js">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/responsive.css">
   <link rel="stylesheet" href="../css/animations.css">
