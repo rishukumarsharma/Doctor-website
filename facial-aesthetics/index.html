@@ -6,13 +6,28 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="google-site-verification" content="iHj-EjX1HNEtonT-n91wbsYcX30wEUCbv8ZmRRQ0NzA" />
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18505921013"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-HRB72M1XT6');
     gtag('config', 'AW-18505921013');
+    // Load Google tag after the page is interactive so it never blocks first paint.
+    // Events fired before it loads are queued in dataLayer and replayed.
+    (function () {
+      var loaded = false;
+      function load() {
+        if (loaded) return; loaded = true;
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=AW-18505921013";
+        document.head.appendChild(s);
+      }
+      ["pointerdown", "keydown", "scroll", "touchstart"].forEach(function (e) {
+        window.addEventListener(e, load, { once: true, passive: true });
+      });
+      window.addEventListener("load", function () { setTimeout(load, 3500); });
+    })();
   </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="../assets/photos/gemini-svg-no-bg.svg">
@@ -35,7 +50,8 @@
 <meta name="twitter:image" content="https://nourishandtone.com/assets/photos/facial-aesthetics-hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/responsive.css">
 <link rel="stylesheet" href="../css/animations.css">
