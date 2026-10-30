@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="185 185 630 630" width="100%" height="100%">
+  <title>Nourish &amp; Tone</title>
+  <defs>
+    <linearGradient id="dark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b4a52"/><stop offset="1" stop-color="#1b7f84"/></linearGradient>
+    <linearGradient id="diag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b9c9b"/><stop offset="0.6" stop-color="#1f8486"/><stop offset="1" stop-color="#0b4a52"/></linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#176f74"/><stop offset="0.5" stop-color="#2a9a9a"/><stop offset="1" stop-color="#2a9a9a"/></linearGradient>
+    <linearGradient id="stem" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b4a52"/><stop offset="1" stop-color="#238d8e"/></linearGradient>
+  </defs>
+  <g transform="translate(81.8 165.9) scale(1.7)">
+    <path fill="url(#dark)" d="M67 325 V140 C67 118 80 105 100 105 C122 105 140 125 140 160 V290 C140 312 108 325 67 325 Z"/>
+    <path fill="url(#diag)" d="M67 140 C67 100 88 72 122 72 C150 72 168 90 190 114 L300 232 V325 L215 238 L140 160 C128 140 110 125 100 125 C82 125 67 135 67 140 Z"/>
+    <path fill="url(#stem)" d="M300 130 H362 V290 C362 312 340 325 300 325 Z"/>
+    <path fill="url(#bar)" d="M240 130 C240 95 265 68 305 68 H425 C425 105 400 130 362 130 Z"/>
+  </g>
+</svg>
