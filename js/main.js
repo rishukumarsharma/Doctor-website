@@ -43,7 +43,37 @@
     }
   }
 
+  /* ---------------- Meta Pixel (loads lazily, like the Google tag) ---------------- */
+  const metaPixelId = DATA.metaPixel && String(DATA.metaPixel.id || "").trim();
+  if (metaPixelId && !window.fbq) {
+    const q = (window.fbq = function () { q.callMethod ? q.callMethod.apply(q, arguments) : q.queue.push(arguments); });
+    q.push = q; q.loaded = true; q.version = "2.0"; q.queue = [];
+    window.fbq("init", metaPixelId);
+    window.fbq("track", "PageView");
+    let pixelLoaded = false;
+    const loadPixel = () => {
+      if (pixelLoaded) return;
+      pixelLoaded = true;
+      const s = document.createElement("script");
+      s.async = true;
+      s.src = "https://connect.facebook.net/en_US/fbevents.js";
+      document.head.appendChild(s);
+    };
+    ["pointerdown", "keydown", "scroll", "touchstart"].forEach((e) => window.addEventListener(e, loadPixel, { once: true, passive: true }));
+    window.addEventListener("load", () => setTimeout(loadPixel, 3500));
+  }
+  const META_EVENTS = {
+    confirm_booking: ["track", "Lead"],
+    contact_form_submitted: ["track", "Lead"],
+    click_whatsapp: ["track", "Contact"],
+    click_phone: ["track", "Contact"],
+    start_booking: ["trackCustom", "StartBooking"],
+  };
+
   function track(eventName, payload) {
+    if (metaPixelId && window.fbq && META_EVENTS[eventName]) {
+      window.fbq(META_EVENTS[eventName][0], META_EVENTS[eventName][1]);
+    }
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: eventName, ...payload });
     if (typeof window.gtag === "function") {

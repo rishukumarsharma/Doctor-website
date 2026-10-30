@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; frame-src https://*.googletagmanager.com https://*.doubleclick.net https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://*.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; frame-src https://*.googletagmanager.com https://*.doubleclick.net https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="google-site-verification" content="iHj-EjX1HNEtonT-n91wbsYcX30wEUCbv8ZmRRQ0NzA" />
   <!-- Google tag (gtag.js) -->
@@ -52,27 +52,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap"></noscript>
-  <!-- Fetch all scripts in parallel instead of one blocking round trip at a time -->
-  <link rel="preload" as="script" href="../js/data.js">
-  <link rel="preload" as="script" href="../js/partials.js">
-  <link rel="preload" as="script" href="../js/schema.js">
-  <link rel="preload" as="script" href="../js/navigation.js">
-  <link rel="preload" as="script" href="../js/animations.js">
-  <link rel="preload" as="script" href="../js/main.js">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/responsive.css">
-<link rel="stylesheet" href="../css/animations.css">
+  <!-- Fetch scripts in parallel instead of one blocking round trip at a time -->
+  <link rel="preload" as="script" href="../js/core.min.js?v=1ecdab90">
+  <link rel="preload" as="script" href="../js/app.min.js?v=ef54b4be">
+  <link rel="stylesheet" href="../css/site.min.css?v=babc5e8c">
 </head>
 <body data-page="body-slimming">
 
 <div id="site-header-root"></div>
 <script>window.SITE_BASE = "../";</script>
-<script src="../js/data.js"></script>
-<script src="../js/partials.js"></script>
+<script src="../js/core.min.js?v=1ecdab90"></script>
 <script>document.getElementById("site-header-root").outerHTML = renderHeaderNav();</script>
 
 <main>
-  <section class="hero hero-fullbleed" data-focal="right" style="background-image:url('../assets/photos/hero-patient-care.jpg');">
+  <section class="hero hero-fullbleed" data-focal="right" style="background-image:url('../assets/photos/hero-patient-care.webp');">
     <div class="container">
       <div class="hero-copy">
         <span class="eyebrow">Body Slimming · Weight Management</span>
@@ -83,7 +76,7 @@
         </div>
       </div>
       <div class="hero-photo">
-        <img src="../assets/photos/hero-patient-care.jpg" alt="Body slimming and weight management care" fetchpriority="high" decoding="async">
+        <img src="../assets/photos/hero-patient-care.webp" alt="Body slimming and weight management care" fetchpriority="high" decoding="async">
       </div>
     </div>
   </section>
@@ -157,7 +150,7 @@
 <div id="site-footer-root"></div>
 <script>document.getElementById("site-footer-root").outerHTML = renderFooter();</script>
 
-<script src="../js/schema.js"></script>
+  <script src="../js/app.min.js?v=ef54b4be"></script>
 <script>
   document.getElementById("body-slimming-services").innerHTML = SITE_DATA.services["body-slimming"].map((s, i) => `
     <div class="service-row reveal">
@@ -185,8 +178,5 @@
       <a href="../book-consultation/?program=${p.id}" class="btn btn-secondary btn-block" style="margin-top:var(--space-3)" data-track="click_book_consultation">Choose ${p.name}</a>
     </div>`).join("");
 </script>
-<script src="../js/navigation.js"></script>
-<script src="../js/animations.js"></script>
-<script src="../js/main.js"></script>
 </body>
 </html>

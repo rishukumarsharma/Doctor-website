@@ -10,7 +10,7 @@ const SITE_DATA = {
     title: "Body Slimming & Facial Aesthetics Specialist",
     philosophy:
       "Every plan starts with a real conversation — your goals, your routine, your history — before it starts with a protocol.",
-    image: "assets/photos/doctor-portrait.jpg",
+    image: "assets/photos/doctor-portrait.webp",
   },
 
   contact: {
@@ -30,6 +30,14 @@ const SITE_DATA = {
         the full 'AW-XXXXXXXXX/Label' into each field below.
      3. When set, conversion events will automatically be transmitted to Google Ads!
      ---------------------------------------------------------------------------------- */
+  /* ---------------- Meta (Facebook/Instagram) Pixel ----------------
+     Paste your Pixel ID (a 15–16 digit number from Meta Events Manager) to turn
+     tracking on. Left empty, nothing loads. Events sent: Lead (booking confirmed,
+     contact form), Contact (WhatsApp / phone click), StartBooking (custom). */
+  metaPixel: {
+    id: "",
+  },
+
   googleAds: {
     // Primary Google Ads Tag / Conversion ID
     conversionId: "AW-18505921013",
@@ -64,7 +72,7 @@ const SITE_DATA = {
       description:
         "Personalized nutrition, lifestyle guidance and progress monitoring built around your body, your routine and your goals.",
       href: "body-slimming/",
-      image: "assets/photos/hero-patient-care.jpg",
+      image: "assets/photos/hero-patient-care.webp",
       imageFocal: "85% 15%",
     },
     {
@@ -75,7 +83,7 @@ const SITE_DATA = {
       description:
         "A refined, evidence-informed approach to skin health, contouring and anti-ageing care — assessed and planned around your face.",
       href: "facial-aesthetics/",
-      image: "assets/photos/facial-aesthetics-card.jpg",
+      image: "assets/photos/facial-aesthetics-card.webp",
       imageFocal: "75% 15%",
     },
   ],

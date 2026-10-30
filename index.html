@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; frame-src https://*.googletagmanager.com https://*.doubleclick.net https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://*.googletagmanager.com https://*.google-analytics.com https://*.googleadservices.com https://*.doubleclick.net https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; frame-src https://*.googletagmanager.com https://*.doubleclick.net https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="google-site-verification" content="iHj-EjX1HNEtonT-n91wbsYcX30wEUCbv8ZmRRQ0NzA" />
   <!-- Google tag (gtag.js) -->
@@ -52,40 +52,29 @@
   <meta name="twitter:description"
     content="Personalized body slimming, weight management and facial aesthetics consultations with Dr. Amulya.S.M. Book an online or in-clinic consultation today.">
   <meta name="twitter:image" content="https://nourishandtone.com/assets/social/og-image.jpg">
-  <link rel="preload" as="image" href="assets/photos/hero-patient-care.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/photos/hero-patient-care.webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&display=swap"></noscript>
-  <!-- Fetch all scripts in parallel instead of one blocking round trip at a time -->
-  <link rel="preload" as="script" href="js/data.js">
-  <link rel="preload" as="script" href="js/partials.js">
-  <link rel="preload" as="script" href="js/schema.js">
-  <link rel="preload" as="script" href="js/navigation.js">
-  <link rel="preload" as="script" href="js/animations.js">
-  <link rel="preload" as="script" href="js/main.js">
-  <link rel="preload" as="script" href="js/bmi.js">
-  <link rel="preload" as="script" href="js/testimonials.js">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/bmi.css">
-  <link rel="stylesheet" href="css/testimonials.css">
+  <!-- Fetch scripts in parallel instead of one blocking round trip at a time -->
+  <link rel="preload" as="script" href="js/core.min.js?v=1ecdab90">
+  <link rel="preload" as="script" href="js/app.min.js?v=ef54b4be">
+  <link rel="stylesheet" href="css/site.min.css?v=babc5e8c">
 </head>
 
 <body data-page="home">
 
   <div id="site-header-root"></div>
   <script>window.SITE_BASE = "./";</script>
-  <script src="js/data.js"></script>
-  <script src="js/partials.js"></script>
+<script src="js/core.min.js?v=1ecdab90"></script>
   <script>document.getElementById("site-header-root").outerHTML = renderHeaderNav();</script>
 
   <main>
 
     <!-- HERO -->
     <section class="hero hero-fullbleed hero--bmi" data-focal="right"
-      style="background-image:url('assets/photos/hero-patient-care.jpg');">
+      style="background-image:url('assets/photos/hero-patient-care.webp');">
       <div class="container">
         <div class="hero-copy">
           <span class="eyebrow">Body Slimming · Facial Aesthetics</span>
@@ -145,7 +134,7 @@
           </div>
         </div>
         <div class="hero-photo">
-          <img src="assets/photos/hero-patient-care.jpg" alt="Dr. Amulya.S.M. patient care" width="1600" height="666" fetchpriority="high" decoding="async">
+          <img src="assets/photos/hero-patient-care.webp" alt="Dr. Amulya.S.M. patient care" width="1600" height="666" fetchpriority="high" decoding="async">
         </div>
       </div>
 
@@ -189,7 +178,7 @@
         <div class="reveal">
           <div class="image-frame"
             style="border-radius: var(--radius-lg); overflow:hidden; background:var(--color-secondary); box-shadow: var(--shadow-md);">
-            <img src="assets/photos/plate-method.jpg"
+            <img src="assets/photos/plate-method.webp"
               alt="The Plate Method — a balanced plate with 50% vegetables and whole grains, 25% protein, complex carbohydrates and healthy fats"
               width="800" height="1005" loading="lazy" decoding="async" style="width:100%;height:auto;display:block;">
           </div>
@@ -399,7 +388,7 @@
   <div id="site-footer-root"></div>
   <script>document.getElementById("site-footer-root").outerHTML = renderFooter();</script>
 
-  <script src="js/schema.js"></script>
+  <script src="js/app.min.js?v=ef54b4be"></script>
   <script>
     const specGrid = document.getElementById("specialization-grid");
     specGrid.innerHTML = SITE_DATA.specializations.map(s => `
@@ -423,11 +412,6 @@
     </div>`).join("");
 
   </script>
-  <script src="js/navigation.js"></script>
-  <script src="js/animations.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/bmi.js"></script>
-  <script src="js/testimonials.js"></script>
 </body>
 
 </html>
