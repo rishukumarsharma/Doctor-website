@@ -35,7 +35,7 @@ const SITE_DATA = {
      tracking on. Left empty, nothing loads. Events sent: Lead (booking confirmed,
      contact form), Contact (WhatsApp / phone click), StartBooking (custom). */
   metaPixel: {
-    id: "",
+    id: "1601655558105583",
   },
 
   googleAds: {
